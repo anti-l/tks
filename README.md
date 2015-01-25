@@ -1,5 +1,4 @@
-# tks
-## Aineopintojen harjoitustyö: Tietokantasovellus
+# Aineopintojen harjoitustyö: Tietokantasovellus
 
 Projektin aiheena on lautapeliarkisto. Arkistossa sisään kirjauduttuaan käyttäjä voi lisätä/poistaa/muokata arkiston sisältöä, tehdä arvosteluja ja selata arkiston sisältöä.
 
