@@ -13,11 +13,13 @@ Ensimmäinen päivitys: Sovellus alustettu ja versionhallinta otettu käyttöön
 
 Sovellukselle luotu suunnitelma sen käyttöliittymäksi:
 
-[Etusivu](http://luan.users.cs.helsinki.fi/tks/game/)
-[Sisäänkirjautuminen](http://luan.users.cs.helsinki.fi/tks/login/)
-[Yhden pelin näyttäminen](http://luan.users.cs.helsinki.fi/tks/game/)
-[Muokkaaminen](http://luan.users.cs.helsinki.fi/tks/game/1)
+<ul>
+<li>[Etusivu](http://luan.users.cs.helsinki.fi/tks/game)</li>
+<li>[Sisäänkirjautuminen](http://luan.users.cs.helsinki.fi/tks/login)</li>
+<li>[Yhden pelin näyttäminen](http://luan.users.cs.helsinki.fi/tks/game)</li>
+<li>[Muokkaaminen](http://luan.users.cs.helsinki.fi/tks/game/1)</li>
+</ul>
 
-
+Tietokanta yhteysmuodostettu ja tauluja pystytetty.
 
 
