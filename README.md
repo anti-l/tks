@@ -18,6 +18,6 @@ Sovellukselle luotu suunnitelma sen käyttöliittymäksi:
 * [Yhden pelin näyttäminen](http://luan.users.cs.helsinki.fi/tks/game)
 * [Muokkaaminen](http://luan.users.cs.helsinki.fi/tks/game/1)
 
-Tietokanta yhteysmuodostettu ja tauluja pystytetty.
+[Tietokantayhteys](http://luan.users.cs.helsinki.fi/tks/tietokantayhteys) muodostettu ja tauluja pystytetty.
 
 
