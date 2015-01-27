@@ -1,0 +1,36 @@
+{% extends "base.html" %}
+
+{% block content %}
+  <h1>Pursiksen pelikirjasto</h1>
+
+  <p>
+    <a href="#" class="btn btn-success">Lisää peli</a>
+  </p>
+
+  <table class="table table-striped table-bordered">
+    <thead>
+      <tr>
+        <th>Nimi</th>
+        <th>Genre</th>
+        <th>Tyyppi</th>
+        <th>Pelaajia</th>
+        <th>Julkaisuvuosi</th>
+        <th>Keskiarvo</th>
+        <th></th>
+      </tr>
+    </thead>
+
+    <tbody>
+      <!-- Listataan pelit tähän -->
+      <tr>
+        <td><a href="#">Arkham Horror</a></td>
+        <td>Adventure, Horror</td>
+        <td>Co-operative</td>
+        <td>1-8</td>
+        <td>2005</td>
+        <td>4,5</td>
+        <th><a class="btn btn-default btn-sm" href="#">Muokkaa</a></th>
+      </tr>
+    </tbody>
+  </table>
+{% endblock %}
