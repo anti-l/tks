@@ -1,17 +1,13 @@
 <?php
 
-  class HelloWorldController extends BaseController{
+//require 'app/models/peli.php';
 
-    public static function index(){
-   	  //self::render_view('home.html');
-    	echo 'Tämä on etusivu!';
-    }
+class HelloWorldController extends BaseController{
 
-    public static function sandbox(){
-      // Testaa koodiasi täällä	
-      //echo 'Hello World!';
-    	self::render_view('helloworld.html');
-    }
+  public static function index(){
+ 	  //self::render_view('home.html');
+  	echo 'Tämä on etusivu!';
+  }
 
   public static function game_list(){
     self::render_view('suunnitelmat/game_list.html');
@@ -29,4 +25,16 @@
     self::render_view('suunnitelmat/login.html');
   }
     
+
+  public static function sandbox(){
+    // Testaa koodiasi täällä 
+    //echo 'Hello World!';
+    //self::render_view('helloworld.html');
+    //print_r('test');
+
+    $kaikki_pelit = Peli::all();
+    print_r($kaikki_pelit);
   }
+
+
+}

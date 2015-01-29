@@ -22,4 +22,12 @@ Sovellukselle luotu suunnitelma sen käyttöliittymäksi:
 
 [Dokumentaatioon](https://github.com/anti-l/tks/blob/master/doc/dokumentaatio.pdf) päivitetty järjestelmän tietosisältö sekä relaatiotietokantakaavio.
 
+### Viikko 3
+
+* Toteuta yksi malliluokka, jossa on
+  * listaus- (all)
+  * haku- (find)
+  * lisäystoiminto (create) mukana
+* Toteuta malli käyttämään kontrollerin metodit
+  * Toteuta kontrolleriinmetodi tietokohteen olion lisäämisen tietokantaan käyttäjän lähettämän lomakkeen tiedoilla
 
