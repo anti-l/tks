@@ -5,8 +5,8 @@ require 'app/models/peli.php';
 class HelloWorldController extends BaseController{
 
   public static function index(){
- 	  //self::render_view('home.html');
-  	echo 'Tämä on etusivu!';
+ 	  self::render_view('home.html');
+  	//echo 'Tämä on etusivu!';
   }
 
   public static function game_list(){
@@ -28,7 +28,7 @@ class HelloWorldController extends BaseController{
 
   public static function sandbox(){
     // Testaa koodiasi täällä 
-    echo 'Hello World!';
+    //echo 'Hello World!';
     //self::render_view('helloworld.html');
     //print_r('test');
 

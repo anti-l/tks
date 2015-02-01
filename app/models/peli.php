@@ -39,7 +39,7 @@ class Peli extends BaseModel{
 
   // Metori, joka hakee tietyn pelin tietokannasta
   public static function find($id) {
-  	$rows = DB::query('SELECT * from Peli WHERE id = :id LIMIT 1', array('id' => id));
+  	$rows = DB::query('SELECT * from Peli WHERE id = :id LIMIT 1', array('id' => $id));
 
   	if(count($rows) > 0){
   		$row = $rows[0];
