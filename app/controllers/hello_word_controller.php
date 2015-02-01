@@ -1,6 +1,6 @@
 <?php
 
-//require 'app/models/peli.php';
+require 'app/models/peli.php';
 
 class HelloWorldController extends BaseController{
 
@@ -34,9 +34,9 @@ class HelloWorldController extends BaseController{
 
     $kaikki_pelit = Peli::all();
     print_r($kaikki_pelit);
-    
-    $eka_peli = Peli::find(1);
-    print_r($eka_peli);
+
+    //$eka_peli = Peli::find('0');
+    //print_r($eka_peli);
   }
 
 

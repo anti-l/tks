@@ -20,17 +20,17 @@ class Peli extends BaseModel{
   	// Käydään rivit läpi
   	foreach($rows as $row){
 	  	$pelit[] = new Peli(array(
-  			'id' = $row['id'],
-	  		'omistaja' = $row['omistaja'],
-  			'nimi' = $row['nimi'],
-  			'julkaisuvuosi' = $row['julkaisuvuosi'],
-  			'julkaisija' = $row['julkaisija'],
-	  		//'genre' = $row['genre'],
-  			'tyyppi' = $row['tyyppi'],
-  			'pelaajat_min' = $row['pelaajat_min'],
-  			'pelaajat_max' = $row['pelaajat_max'],
-  			'lisayspaiva' = $row['lisayspaiva'],
-  			'kuvaus' = $row['kuvaus']
+  			'id' => $row['id'],
+	  		'omistaja' => $row['omistaja'],
+  			'nimi' => $row['nimi'],
+  			'julkaisuvuosi' => $row['julkaisuvuosi'],
+  			'julkaisija' => $row['julkaisija'],
+	  		//'genre' => $row['genre'],
+  			'tyyppi' => $row['tyyppi'],
+  			'pelaajat_min' => $row['pelaajat_min'],
+  			'pelaajat_max' => $row['pelaajat_max'],
+  			'lisayspaiva' => $row['lisayspaiva'],
+  			'kuvaus' => $row['kuvaus']
   		));
   	}
 
@@ -45,17 +45,17 @@ class Peli extends BaseModel{
   		$row = $rows[0];
 
   		$peli = new Peli(array(
-  			'id' = $row['id'],
-	  		'omistaja' = $row['omistaja'],
-  			'nimi' = $row['nimi'],
-  			'julkaisuvuosi' = $row['julkaisuvuosi'],
-  			'julkaisija' = $row['julkaisija'],
-	  		//'genre' = $row['genre'],
-  			'tyyppi' = $row['tyyppi'],
-  			'pelaajat_min' = $row['pelaajat_min'],
-  			'pelaajat_max' = $row['pelaajat_max'],
-  			'lisayspaiva' = $row['lisayspaiva'],
-  			'kuvaus' = $row['kuvaus']
+  			'id' => $row['id'],
+	  		'omistaja' => $row['omistaja'],
+  			'nimi' => $row['nimi'],
+  			'julkaisuvuosi' => $row['julkaisuvuosi'],
+  			'julkaisija' => $row['julkaisija'],
+	  		//'genre' => $row['genre'],
+  			'tyyppi' => $row['tyyppi'],
+  			'pelaajat_min' => $row['pelaajat_min'],
+  			'pelaajat_max' => $row['pelaajat_max'],
+  			'lisayspaiva' => $row['lisayspaiva'],
+  			'kuvaus' => $row['kuvaus']
   		));
 
   		return $peli;
