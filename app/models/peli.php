@@ -63,5 +63,28 @@ class Peli extends BaseModel{
   	return null;
   }
 
+/* *
+  public static function create($uusitaulukko){
+
+    // Uuden pelin luominen lomakkeesta tulevien tietojen peruseella
+    $peli = new Peli(array(
+      'omistaja' => $uusitaulukko['omistaja'],
+      'nimi' => $uusitaulukko['nimi'],
+      'julkaisuvuosi' => $uusitaulukko['julkaisuvuosi'],
+      'julkaisija' => $uusitaulukko['julkaisija'],
+      'tyyppi' => $uusitaulukko['tyyppi'],
+      'pelaajat_min' => $uusitaulukko['pelaajat_min'],
+      'pelaajat_max' => $uusitaulukko['pelaajat_max'],
+      'lisayspaiva' => $uusitaulukko['lisayspaiva'],
+      'kuvaus' => $uusitaulukko['kuvaus']
+    ));
+
+    //$id = DB::
+    //    INSERT INTO Peli () VALUES () RETURNING id
+    
+  }
+
+/* */
+
 }
 

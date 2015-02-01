@@ -2,10 +2,14 @@
 
 {% block content %}
 
-  <h1>Arkham Horror</h1>
+  <!--
+  <div class="alert alert-success">{{message}}</div>
+  -->
+
+  <h1>{{peli.nimi}}</h1>
   <!-- Painikkeet tähän -->
   <p>
-    <button class="btn btn-danger">Poista</button> <a href="#" class="btn btn-default">Muokkaa</a>
+    <button class="btn btn-danger">Poista</button> <a href="{{base_path}}/game/{{peli.id}}/edit" class="btn btn-default">Muokkaa</a>
   </p>
   <!-- Tiedot tulee listana tähän -->
   <ul>
