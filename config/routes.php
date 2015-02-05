@@ -44,7 +44,7 @@
   });
 
   // Uuden pelin luonti
-  $app->post('/game', function(){
+  $app->post('/game/uusi', function(){
     PeliKontrolleri::tallenna();
   });
 
@@ -57,6 +57,16 @@
   $app->get('/game/:id/edit', function($id){
     PeliKontrolleri::game_edit($id);
   });
+
+  // Yksittäisen pelin päivitys
+  $app->post('/game/:id/edit', function($id){
+    PeliKontrolleri::update($id);
+  }
+
+  // Pelin poistaminen
+  $app->post('/game/:id/destroy', function($id){
+    PeliKontrolleri::destroy($id);
+  }
 
   // Login-sivu
   $app->get('/login', function(){

@@ -21,6 +21,10 @@
 
       foreach($this->validators as $validator){
         // Kutsu validointimetodia tässä ja lisää sen palauttamat virheet errors-taulukkoon
+
+        $errors = array_merge($this->{'validate_nimi'}(), $this->{'validate_julkaisija'}(),
+                              $this->{'validate_julkaisuvuosi'}(), $this->{'validate_pelaajat_max'}(),
+                              $this->{'validate_pelaajat_min'}());
       }
 
       return $errors;

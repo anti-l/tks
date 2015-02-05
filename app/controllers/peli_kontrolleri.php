@@ -26,28 +26,36 @@ class PeliKontrolleri extends BaseController{
 		self::render_view('game/pelinakyma.html', array('peli' => $peli));
 	}
 
-/* *
-	public static function tallenna(){
+	public static function tallenna() {
 
 		//Post-pyynnön muuttujat haetaan $_POST -assosiaatiolistasta
 		$params = $_POST;
 
-		// Luodaan uusi peli syötetyistä tiedoista
-		$id = Peli::create(array(
+		$attribuutit = array(
 			'nimi' => $params['nimi'],
 			'omistaja' => $params['omistaja'],
-			'julkaisuvuosi' => $params['julkaisuvuosi'],
 			'julkaisija' => $params['julkaisija'],
-			'tyyppi' => $params['tyyppi'],
+			'julkaisuvuosi' => $params['julkaisuvuosi'],
+			//'tyyppi' => $params['tyyppi'],
 			'pelaajat_min' => $params['pelaajat_min'],
 			'pelaajat_max' => $params['pelaajat_max'],
 			'kuvaus' => $params['kuvaus']
-		));
+			);
 
-		// Lopuksi ohjataan käyttäjä luodun pelin esittelysivulle
-		self::redirect_to('/game/' . $id, array('message' => 'Peli lisätty.'))
+		$peli = new Peli($attribuutit);
+		$virheet = $peli->errors();
+
+		if(count($errors) == 0) {
+			// Jos attribuutit on kunnossa, luodaan peli ja siirretään käyttäjä esittelysivulle
+			$id = Peli::create($attribuutit);
+			self::redirect_to('/game/' . $id, array('message' => 'Peli lisätty.'));
+
+		} else {
+			// Pelissä oli jotain vikaa, palautetaan virheet ja attribuutit
+			self::render_view('game/uusi.html', array('virheet' => $virheet, 'attribuutit' => $attribuutit));
+		}
 	}
-/* */
+
 
 	public static function luoUusi(){
 		self::render_view('game/uusi.html');
@@ -63,7 +71,49 @@ class PeliKontrolleri extends BaseController{
 		$peli = Peli::find($id);
 
 		// Näytetään haetun pelin tiedot
-		self::render_view('game/edit.html', array('peli' => $peli));
+		self::render_view('game/edit.html', array('attribuutit' => $peli));
 	}
+
+
+	// Pelin päivittäminen järjestelmässä
+	public static function game_update($id){
+		// otetaan updatesta attribuutit talteen
+		$params =  $_POST;
+
+		// talletetaan attribuutit omaan muuttujataulukkoon oikein
+		$attribuutit = array(
+			'nimi' => $params['nimi'],
+			'omistaja' => $params['omistaja'],
+			'julkaisija' => $params['julkaisija'],
+			'julkaisuvuosi' => $params['julkaisuvuosi'],
+			//'tyyppi' => $params['tyyppi'],
+			'pelaajat_min' => $params['pelaajat_min'],
+			'pelaajat_max' => $params['pelaajat_max'],
+			'kuvaus' => $params['kuvaus']
+			);
+
+		// Luodaan uusi peli annetuilla attribuuteilla ja lasketaan virheet
+		$peli = new Peli($attribuutit);
+		$virheet = $peli->errors();
+
+		if(count($virheet > 0)) {
+			// epäonnistui, takaisin editointiin, kirjoitetaan virheet sivulle
+			self::render_view('/game/edit.html', array('virheet' => $virheet, 'attribuutit' => $attribuutit));
+		} else {
+			// onnistui, takaisin sivulle onnistuneen tekstin kera
+			Peli::update($id, $attribuutit);
+			redirect_to('/game/' . $id, array('message' => 'Muokkaus onnistui.'));
+		}
+	}
+
+
+	// Pelin poistaminen järjestelmästä
+	public static function destroy($id){
+		// Peli poistetaan Peli-luokan metodilla destroy($id)
+		Peli::destroy($id);
+		// Viedään käyttäjä takaisin etusivulle
+		self::redirect_to('/game', array('message' => 'Peli poistettu.'));
+	}
+
 
 }

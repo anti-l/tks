@@ -4,46 +4,61 @@
 
   <h1>Uusi peli</h1>
 
-  <form method="post" action="{{base_path}}/game">
+  <!-- Onkohan nää virheet = errors ja error ihan oikein? Perus for-each kyllä sanois niin. -->
+
+  {% if virheet %}
+  <div class="alert alert-danger">
+    <ul>
+      {% for error in virheet %}
+      <li>{{error}}</li>
+      {% endfor %}
+    </ul>
+  </div>
+  {% endif %}
+
+
+  <form method="post" action="{{base_path}}/game/uusi">
 
     <div class="form-group">
       <label>Nimi</label>
-      <input name="nimi" class="form-control" type="text">
+      <input name="nimi" class="form-control" type="text" value="{{attribuutit.nimi}}">
     </div>
 
     <div class="form-group">
       <label>Omistaja</label>
-      <input name="omistaja" class="form-control" type="text">
+      <input name="omistaja" class="form-control" type="text" value="{{attribuutit.omistaja}}"
     </div>
 
     <div class="form-group">
       <label>Julkaisuvuosi</label>
-      <input name="julkaisuvuosi" class="form-control" type="text">
+      <input name="julkaisuvuosi" class="form-control" type="text" value="{{attribuutit.julkaisuvuosi}}">
     </div>
 
     <div class="form-group">
       <label>Julkaisija</label>
-      <input name="julkaisija" class="form-control" type="text">
+      <input name="julkaisija" class="form-control" type="text" value="{{attribuutit.julkaisija}}">
     </div>
 
+<!--
     <div class="form-group">
       <label>Tyyppi</label>
-      <input name="tyyppi" class="form-control" type="text">
+      <input name="tyyppi" class="form-control" type="text" value="{{attribuutit.tyyppi}}">
     </div>
+-->
 
     <div class="form-group">
       <label>Pelaajien minimimäärä</label>
-      <input name="pelaajat_min" class="form-control" type="text">
+      <input name="pelaajat_min" class="form-control" type="text" value="{{attribuutit.pelaajat_min}}">
     </div>
 
     <div class="form-group">
       <label>Pelaajien maksimimäärä</label>
-      <input name="pelaajat_max" class="form-control" type="text">
+      <input name="pelaajat_max" class="form-control" type="text" value="{{attribuutit.pelaajat_max}}">
     </div>
 
     <div class="form-group">
       <label>Kuvaus</label>
-      <textarea name="kuvaus" class="form-control"></textarea>
+      <textarea name="kuvaus" class="form-control" value="{{attribuutit.kuvaus}}"></textarea>
     </div>
 
     <div class="form-group">

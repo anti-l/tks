@@ -8,6 +8,8 @@ class Peli extends BaseModel{
   // Konstruktori
   public function __construct($attributes){
     parent::__construct($attributes);
+
+    $this->validators = array('validate_nimi', 'validate_julkaisija', 'validate_julkaisija', 'validate_pelaajat_min', 'validate_pelaajat_max');
   }
 
   // Metodi, joka hakee pelit tietokannasta ja palauttaa ne olioina
@@ -63,28 +65,86 @@ class Peli extends BaseModel{
   	return null;
   }
 
-/* *
+
   public static function create($uusitaulukko){
 
-    // Uuden pelin luominen lomakkeesta tulevien tietojen peruseella
-    $peli = new Peli(array(
-      'omistaja' => $uusitaulukko['omistaja'],
-      'nimi' => $uusitaulukko['nimi'],
-      'julkaisuvuosi' => $uusitaulukko['julkaisuvuosi'],
-      'julkaisija' => $uusitaulukko['julkaisija'],
-      'tyyppi' => $uusitaulukko['tyyppi'],
-      'pelaajat_min' => $uusitaulukko['pelaajat_min'],
-      'pelaajat_max' => $uusitaulukko['pelaajat_max'],
-      'lisayspaiva' => $uusitaulukko['lisayspaiva'],
-      'kuvaus' => $uusitaulukko['kuvaus']
-    ));
+    // Talletetaan parametrinä annetun taulukon tiedot tietokantaan, otetaan rivi talteen
+    //$row = DB::query('INSERT INTO Peli (nimi, omistaja, julkaisuvuosi, julkaisija, tyyppi, pelaajat_min, pelaajat_max, kuvaus) VALUES (:nimi, :omistaja, :julkaisuvuosi, :julkaisija, :tyyppi, :pelaajat_min, :pelaajat_max, :kuvaus)', $uusitaulukko);
+    $row = DB::query('INSERT INTO Peli (nimi, omistaja, julkaisuvuosi, julkaisija, pelaajat_min, pelaajat_max, kuvaus) VALUES (:nimi, :omistaja, :julkaisuvuosi, :julkaisija, :pelaajat_min, :pelaajat_max, :kuvaus)', $uusitaulukko);
 
-    //$id = DB::
-    //    INSERT INTO Peli () VALUES () RETURNING id
-    
+    // Palautetaan lisätyn pelin rivin id
+    return $row[0]['id'];
   }
 
-/* */
+
+  public static function validate_nimi(){
+
+    // Nimen validointi: Nimi ei saa olla tyhjä, nimessä pitää olla vähintään 3 merkkiä.
+    $errors = array();
+
+    if($this->nimi == '' || $this->nimi == null){
+      $errors[] = 'Nimi ei saa olla tyhjä.';
+    }
+    if(strlen($this->nimi) < 3){
+      $errors[] = 'Nimen pituuden tulee olla vähintään kolme merkkiä.';
+    }
+    return $errors;
+  }
+  
+  public static function validate_julkaisija(){
+
+    // Julkaisijan validointi: Nimi ei saa olla tyhjä, julkaisijan nimessä pitää olla vähintään 3 merkkiä.
+    $errors[] = array();
+
+    if($this->julkaisija == '' || $this->julkaisija == null){
+      $errors[] = 'Julkaisijan nimi ei saa olla tyhjä.';
+    }
+    if(strlen($this->julkaisija) < 3){
+      $errors[] = 'Julkaisijan nimessä tulee olla vähintään kolme merkkiä.';
+    }
+    return $errors;
+  }
+
+
+
+  public static function validate_julkaisuvuosi(){
+
+    // Julkaisuvuoden validointi: oltava tyhjä tai luku
+    $errors[] = array();
+
+    if($this->julkaisija != '' || $this->julkaisija != null || is_numeric($this->julkaisuvuosi)){
+      $errors[] = 'Julkaisuvuosi on oltava numero.';
+    }
+    return $errors;
+  }
+
+
+  public static function validate_pelaajat_min(){
+
+    // Pelaajamäärän validointi: jätettävä tyhjäksi tai syötettävä luku
+    $errors[] = array();
+
+    if($this->pelaajat_min != '' || $this->pelaajat_min != null || is_numeric($this->pelaajat_min)){
+      $errors[] = 'Pelaajien minimimäärän on oltava numero.';
+    }
+    return $errors;
+  }
+
+
+  public static function validate_pelaajat_max(){
+
+    // Pelaajamäärän validointi: jätettävä tyhjäksi tai syötettävä luku
+    $errors[] = array();
+
+    if($this->pelaajat_max != '' || $this->pelaajat_max != null || is_numeric($this->pelaajat_max)){
+      $errors[] = 'Pelaajien minimimäärän on oltava numero.';
+    }
+    return $errors;
+  }
+
+  public static function destroy($id){
+    //
+  }
 
 }
 
