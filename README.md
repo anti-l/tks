@@ -33,10 +33,15 @@ Sovellukselle luotu suunnitelma sen käyttöliittymäksi:
 
 ### Viikko 4
 
-* Lisää malliisi muokkaus- ja poistotoiminnot [Peli-luokassa]
-* Lisää käyttäjälle mahdollisuus muokkaukseen ja poistoon lisäämällä kontrolleriin tarvittavat metodit ja toteuttamalla tarvittavat näkymät [Metodit lisätty reitteihin ja kontrolleriin, muut kesken]
-* Lisää malliisi tarvittavat validaattorit ja estä kontrollereissa virheellisten olioiden lisäys tietokantaan. Muista näyttää lomakkeissa virhetilanteissa virheilmoitukset ja täyttää kentät käyttäjän antamilla syötteillä. [validaattorit Peli-luokassa, samoin virheiden käsittely. Virheiden esittäminen tehty, samoin kenttiin käyttäjän syötteiden palauttaminen.]
-* Toteuta malliluokka sovelluksen käyttäjälle ja toteuta käyttäjän kirjautuminen. Toteuta get_user_logged_in-metodi ja käytä tarvittaessa kirjautuneen käyttäjän tietoa hyväksi näkymissä ja malleissa. [Täysin tekemättä]
-* Kirjoita alustava käynnistys- / käyttöohje dokumentaatioosi. [Täysin tekemättä]
+* Lisää malliisi muokkaus- ja poistotoiminnot 
+*Peli-luokassa*
+* Lisää käyttäjälle mahdollisuus muokkaukseen ja poistoon lisäämällä kontrolleriin tarvittavat metodit ja toteuttamalla tarvittavat näkymät 
+*Metodit lisätty reitteihin ja kontrolleriin, muut kesken*
+* Lisää malliisi tarvittavat validaattorit ja estä kontrollereissa virheellisten olioiden lisäys tietokantaan. Muista näyttää lomakkeissa virhetilanteissa virheilmoitukset ja täyttää kentät käyttäjän antamilla syötteillä. 
+*validaattorit Peli-luokassa, samoin virheiden käsittely. Virheiden esittäminen tehty, samoin kenttiin käyttäjän syötteiden palauttaminen*
+* Toteuta malliluokka sovelluksen käyttäjälle ja toteuta käyttäjän kirjautuminen. Toteuta get_user_logged_in-metodi ja käytä tarvittaessa kirjautuneen käyttäjän tietoa hyväksi näkymissä ja malleissa. 
+*Täysin tekemättä*
+* Kirjoita alustava käynnistys- / käyttöohje dokumentaatioosi.
+*Täysin tekemättä*
 
 
