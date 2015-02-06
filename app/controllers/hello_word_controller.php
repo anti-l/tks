@@ -28,13 +28,6 @@ class HelloWorldController extends BaseController{
   public static function sandbox(){
     // Testaa koodiasi täällä 
     echo 'Hello World!';
-    //self::render_view('helloworld.html');
-    //print_r('test');
-
-    //$kaikki_pelit = Peli::all();
-    //print_r($kaikki_pelit);
-
-    //echo date(d M Y);
 
     //$eka_peli = Peli::find('0');
     //print_r($eka_peli);

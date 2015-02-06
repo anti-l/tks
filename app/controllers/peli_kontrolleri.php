@@ -44,8 +44,10 @@ class PeliKontrolleri extends BaseController{
 
 		$peli = new Peli($attribuutit);
 		$virheet = $peli->errors();
+		
+		
 
-		if(count($errors) == 0) {
+		if(count($virheet) == 0) {
 			// Jos attribuutit on kunnossa, luodaan peli ja siirretään käyttäjä esittelysivulle
 			$id = Peli::create($attribuutit);
 			self::redirect_to('/game/' . $id, array('message' => 'Peli lisätty.'));

@@ -8,7 +8,7 @@
 
 /* Esimerkkisivut, viikon 2 vaatimuksia */
 
-  /* Viikko 3 korvaa tämän jo */
+  /* Viikko 3 korvaa tämän jo, nämä on tässä vain githubin readme:tä varten */
   $app->get('/game/esim', function() {
     HelloWorldController::game_list();
   });
@@ -61,12 +61,12 @@
   // Yksittäisen pelin päivitys
   $app->post('/game/:id/edit', function($id){
     PeliKontrolleri::update($id);
-  }
+  });
 
   // Pelin poistaminen
   $app->post('/game/:id/destroy', function($id){
     PeliKontrolleri::destroy($id);
-  }
+  });
 
   // Login-sivu
   $app->get('/login', function(){

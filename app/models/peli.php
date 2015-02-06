@@ -9,7 +9,7 @@ class Peli extends BaseModel{
   public function __construct($attributes){
     parent::__construct($attributes);
 
-    $this->validators = array('validate_nimi', 'validate_julkaisija', 'validate_julkaisija', 'validate_pelaajat_min', 'validate_pelaajat_max');
+    $this->validators = array('validate_nimi', 'validate_julkaisuvuosi', 'validate_julkaisija', 'validate_pelaajat_min', 'validate_pelaajat_max');
   }
 
   // Metodi, joka hakee pelit tietokannasta ja palauttaa ne olioina
@@ -69,15 +69,14 @@ class Peli extends BaseModel{
   public static function create($uusitaulukko){
 
     // Talletetaan parametrinä annetun taulukon tiedot tietokantaan, otetaan rivi talteen
-    //$row = DB::query('INSERT INTO Peli (nimi, omistaja, julkaisuvuosi, julkaisija, tyyppi, pelaajat_min, pelaajat_max, kuvaus) VALUES (:nimi, :omistaja, :julkaisuvuosi, :julkaisija, :tyyppi, :pelaajat_min, :pelaajat_max, :kuvaus)', $uusitaulukko);
-    $row = DB::query('INSERT INTO Peli (nimi, omistaja, julkaisuvuosi, julkaisija, pelaajat_min, pelaajat_max, kuvaus) VALUES (:nimi, :omistaja, :julkaisuvuosi, :julkaisija, :pelaajat_min, :pelaajat_max, :kuvaus)', $uusitaulukko);
+    $row = DB::query('INSERT INTO Peli (nimi, omistaja, julkaisuvuosi, julkaisija, pelaajat_min, pelaajat_max, kuvaus) VALUES (:nimi, :omistaja, :julkaisuvuosi, :julkaisija, :pelaajat_min, :pelaajat_max, :kuvaus) RETURNING id', $uusitaulukko);
 
     // Palautetaan lisätyn pelin rivin id
     return $row[0]['id'];
   }
 
 
-  public static function validate_nimi(){
+  public function validate_nimi(){
 
     // Nimen validointi: Nimi ei saa olla tyhjä, nimessä pitää olla vähintään 3 merkkiä.
     $errors = array();
@@ -91,7 +90,7 @@ class Peli extends BaseModel{
     return $errors;
   }
   
-  public static function validate_julkaisija(){
+  public function validate_julkaisija(){
 
     // Julkaisijan validointi: Nimi ei saa olla tyhjä, julkaisijan nimessä pitää olla vähintään 3 merkkiä.
     $errors[] = array();
@@ -107,7 +106,7 @@ class Peli extends BaseModel{
 
 
 
-  public static function validate_julkaisuvuosi(){
+  public function validate_julkaisuvuosi(){
 
     // Julkaisuvuoden validointi: oltava tyhjä tai luku
     $errors[] = array();
@@ -119,7 +118,7 @@ class Peli extends BaseModel{
   }
 
 
-  public static function validate_pelaajat_min(){
+  public function validate_pelaajat_min(){
 
     // Pelaajamäärän validointi: jätettävä tyhjäksi tai syötettävä luku
     $errors[] = array();
@@ -131,7 +130,7 @@ class Peli extends BaseModel{
   }
 
 
-  public static function validate_pelaajat_max(){
+  public function validate_pelaajat_max(){
 
     // Pelaajamäärän validointi: jätettävä tyhjäksi tai syötettävä luku
     $errors[] = array();
@@ -143,7 +142,7 @@ class Peli extends BaseModel{
   }
 
   public static function destroy($id){
-    //
+    // Pelien deletointi
   }
 
 }
