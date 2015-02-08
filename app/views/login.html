@@ -4,11 +4,7 @@
   <h1>Kirjaudu sisään</h1>
 
   <!-- Sisäänkirjautumisviestit -->
-  {% if message != '' %}
-  <div class="alert alert-success">{{message}}</div>
-  {% endif %}
-
-  {% if message != '' %}
+  {% if error != '' %}
   <div class="alert alert-danger">{{error}}</div>
   {% endif %}
   

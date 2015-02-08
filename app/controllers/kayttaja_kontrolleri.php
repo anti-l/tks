@@ -16,11 +16,10 @@ class KayttajaKontrolleri extends BaseController{
     }else{
       $_SESSION['user'] = $user->id;
 
-      self::redirect_to('/', array('message' => 'Tervetuloa takaisin' . $user->name . '!'));
+      self::redirect_to('/game', array('message' => 'Tervetuloa takaisin ' . $user->nimi . '!'));
     }
   }
-  
-  
+    
   
 }
 

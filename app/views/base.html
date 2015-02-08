@@ -44,7 +44,15 @@
           </ul>
 
           <ul class="nav navbar-nav navbar-right">
-            <li><a href="{{base_path}}/login">Login</a></li>
+            
+            {% block kirjautuminen %}
+            {% if user_logged_in %}
+                <li>{{kayttaja.nimi}} kirjautunut sisään</li>
+            {% else %}
+                <li><a href="{{base_path}}/login">Login</a></li>
+            {% endif %}
+            {% endblock %}
+            <!-- <li><a href="{{base_path}}/login">Login</a></li> -->
           </ul>
         </div>
       </div>
