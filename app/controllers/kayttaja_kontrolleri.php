@@ -20,6 +20,10 @@ class KayttajaKontrolleri extends BaseController{
     }
   }
     
-  
+  public static function handle_logout(){
+//      $user = null;
+      $_SESSION['user'] = null;
+      self::redirect_to('/');
+  }
 }
 

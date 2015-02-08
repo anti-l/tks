@@ -47,7 +47,8 @@
             
             {% block kirjautuminen %}
             {% if user_logged_in %}
-                <li>{{kayttaja.nimi}} kirjautunut sisään</li>
+                <li>{{user_logged_in.nimi}} kirjautunut sisään</li>
+                <li><a href="{{base_path}}/logout">Logout</a></li>
             {% else %}
                 <li><a href="{{base_path}}/login">Login</a></li>
             {% endif %}

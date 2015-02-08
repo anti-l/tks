@@ -11,7 +11,18 @@ class Kayttaja extends BaseModel {
     }
 
     public static function find($user_id) {
-        // Tämän mä taisin tehdä turhaan?
+        $rows = DB::query('SELECT * from Kayttaja WHERE id= :id LIMIT 1', array('id' => $user_id));
+
+        if (count($rows) > 0) {
+            $row = $rows[0];
+            $kayttaja = new Kayttaja(array(
+                'id' => $row['id'],
+                'nimi' => $row['nimi'],
+                'salasana' => $row['salasana']
+            ));
+
+            return $kayttaja;
+        }
     }
 
     public static function authenticate($username, $password) {

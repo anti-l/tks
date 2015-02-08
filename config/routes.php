@@ -73,9 +73,18 @@
     KayttajaKontrolleri::login();
   });
 
-  // Loggautuminen
+  // Sisään kirjautuminen
   $app->post('/login', function(){
     KayttajaKontrolleri::handle_login();
+  });
+
+  // Ulos kirjautuminen
+  $app->get('/logout', function(){
+    KayttajaKontrolleri::handle_logout();
+  });
+
+  $app->post('/logout', function(){
+    KayttajaKontrolleri::handle_logout();
   });
 
 

@@ -34,14 +34,14 @@ Sovellukselle luotu suunnitelma sen käyttöliittymäksi:
 ### Viikko 4
 
 * Lisää malliisi muokkaus- ja poistotoiminnot 
-  * *Peli-luokassa*
+  * *Nämä on toteutettu Peli-luokassa.*
 * Lisää käyttäjälle mahdollisuus muokkaukseen ja poistoon lisäämällä kontrolleriin tarvittavat metodit ja toteuttamalla tarvittavat näkymät 
-  * *Metodit lisätty reitteihin ja kontrolleriin, muut kesken*
+  * *Mahdollisuus muokkaukseen ja poistoon lisätty, mahdollista vain sisään kirjautuneena.*
 * Lisää malliisi tarvittavat validaattorit ja estä kontrollereissa virheellisten olioiden lisäys tietokantaan. Muista näyttää lomakkeissa virhetilanteissa virheilmoitukset ja täyttää kentät käyttäjän antamilla syötteillä. 
   * *validaattorit Peli-luokassa, samoin virheiden käsittely. Virheiden esittäminen tehty, samoin kenttiin käyttäjän syötteiden palauttaminen*
 * Toteuta malliluokka sovelluksen käyttäjälle ja toteuta käyttäjän kirjautuminen. Toteuta get_user_logged_in-metodi ja käytä tarvittaessa kirjautuneen käyttäjän tietoa hyväksi näkymissä ja malleissa. 
-  * *Täysin tekemättä*
+  * *Sisään kirjautuminen valmis. Käyttäjät ja salasanat näkyy tällä hetkellä selkeäkielisenä tietokannassa. Nämä näkyvät testaajalle esimerkiksi [tietokantayhteyden kautta](http://luan.users.cs.helsinki.fi/tks/tietokantayhteys).*
 * Kirjoita alustava käynnistys- / käyttöohje dokumentaatioosi.
-  * *Täysin tekemättä*
+  * *Viimeisellä sivulla [dokumentaatiossa](https://github.com/anti-l/tks/blob/master/doc/dokumentaatio.pdf?raw=true).*
 
 

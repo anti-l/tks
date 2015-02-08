@@ -8,7 +8,13 @@
   {% endif %}
 
   <p>
-    <a href="{{base_path}}/game/uusi" class="btn btn-success">Lisää peli</a>
+    {% block kirjautuneena_voi_lisata %}
+      {% if user_logged_in %}
+      <a href="{{base_path}}/game/uusi" class="btn btn-success">Lisää peli</a>
+      {% else %}
+      Kirjaudu sisään lisätäksesi, muokataksesi tai poistaaksesi pelejä.
+      {% endif %}
+    {% endblock %}
   </p>
 
   <table class="table table-striped table-bordered">
@@ -20,7 +26,11 @@
         <th>Pelaajia Min</th>
         <th>Pelaajia Max</th>
         <th>Lisäyspäivä</th>
+          {% block kirjautuneena_voi_muokata1 %}
+            {% if user_logged_in %}
         <th></th>
+            {% endif %}
+          {% endblock %}
       </tr>
     </thead>
 
@@ -33,7 +43,11 @@
           <td>{{peli.pelaajat_min}}</td>
           <td>{{peli.pelaajat_max}}</td>
           <td>{{peli.lisayspaiva}}</td>
+          {% block kirjautuneena_voi_muokata2 %}
+            {% if user_logged_in %}
           <td><a class="btn btn-default btn-sm" href="{{base_path}}/game/{{peli.id}}/edit">Muokkaa</a></td>
+            {% endif %}
+          {% endblock %}
         </tr>
       {% endfor %}
     </tbody>

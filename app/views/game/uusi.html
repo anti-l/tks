@@ -20,22 +20,22 @@
   <form method="post" action="{{base_path}}/game/uusi">
 
     <div class="form-group">
-      <label>Nimi</label>
+      <label>Nimi [vaaditaan, min 3 merkkiä]</label>
       <input name="nimi" class="form-control" type="text" value="{{attribuutit.nimi}}">
     </div>
 
     <div class="form-group">
-      <label>Omistaja (numerona)</label>
+      <label>Omistaja [vaaditaan, numerot 1-2 (käyttäjän id)]</label>
       <input name="omistaja" class="form-control" type="text" value="{{attribuutit.omistaja}}"
     </div>
 
     <div class="form-group">
-      <label>Julkaisuvuosi</label>
+      <label>Julkaisuvuosi [vaaditaan, numero]</label>
       <input name="julkaisuvuosi" class="form-control" type="text" value="{{attribuutit.julkaisuvuosi}}">
     </div>
 
     <div class="form-group">
-      <label>Julkaisija</label>
+      <label>Julkaisija [vaaditaan, vapaa teksti]</label>
       <input name="julkaisija" class="form-control" type="text" value="{{attribuutit.julkaisija}}">
     </div>
 
@@ -47,12 +47,12 @@
 -->
 
     <div class="form-group">
-      <label>Pelaajien minimimäärä</label>
+      <label>Pelaajien minimimäärä [vaaditaan]</label>
       <input name="pelaajat_min" class="form-control" type="text" value="{{attribuutit.pelaajat_min}}">
     </div>
 
     <div class="form-group">
-      <label>Pelaajien maksimimäärä</label>
+      <label>Pelaajien maksimimäärä [vaaditaan]</label>
       <input name="pelaajat_max" class="form-control" type="text" value="{{attribuutit.pelaajat_max}}">
     </div>
 
