@@ -147,7 +147,7 @@ class Peli extends BaseModel{
 
   public static function destroy($id){
     // Pelien deletointi
-      DB::query('DELETE from Peli WHERE id = ' . $id);
+      DB::query('DELETE from Peli WHERE id=' . $id);
   }
 
 

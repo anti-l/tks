@@ -63,10 +63,11 @@ class PeliKontrolleri extends BaseController{
 		self::render_view('game/uusi.html');
 	}
 
-
+        /* Tämä hoidetaan kayttaja_kontrollerissa nykyään
 	public static function login(){
 		self::render_view('login.html');
 	}
+        */
 
 	public static function game_edit($id) {
 		// Haetaan id:tä vastaava peli tietokannasta

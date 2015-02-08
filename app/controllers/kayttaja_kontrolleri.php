@@ -9,7 +9,7 @@ class KayttajaKontrolleri extends BaseController{
   public static function handle_login(){
     $params = $_POST;
 
-    $user = User::authenticate($params['username'], $params['password']);
+    $user = Kayttaja::authenticate($params['username'], $params['password']);
 
     if(!$user){
       self::redirect_to('/login', array('error' => 'Väärä käyttäjätunnus tai salasana!'));
@@ -19,5 +19,8 @@ class KayttajaKontrolleri extends BaseController{
       self::redirect_to('/', array('message' => 'Tervetuloa takaisin' . $user->name . '!'));
     }
   }
+  
+  
+  
 }
 
