@@ -9,7 +9,8 @@ class Peli extends BaseModel{
   public function __construct($attributes){
     parent::__construct($attributes);
 
-    $this->validators = array('validate_nimi', 'validate_julkaisuvuosi', 'validate_julkaisija', 'validate_pelaajat_min', 'validate_pelaajat_max');
+//    $this->validators = array('validate_nimi', 'validate_julkaisuvuosi', 'validate_julkaisija', 'validate_pelaajat_min', 'validate_pelaajat_max');
+    $this->validators = array('validate_nimi');
   }
 
   // Metodi, joka hakee pelit tietokannasta ja palauttaa ne olioina
@@ -111,7 +112,8 @@ class Peli extends BaseModel{
     // Julkaisuvuoden validointi: oltava tyhjä tai luku
     $errors[] = array();
 
-    if($this->julkaisija != '' || $this->julkaisija != null || is_numeric($this->julkaisuvuosi)){
+//    if($this->julkaisuvuosi != '' || $this->julkaisuvuosi != null || is_numeric($this->julkaisuvuosi)){
+    if(is_numeric($this->julkaisuvuosi)){
       $errors[] = 'Julkaisuvuosi on oltava numero.';
     }
     return $errors;
@@ -123,7 +125,8 @@ class Peli extends BaseModel{
     // Pelaajamäärän validointi: jätettävä tyhjäksi tai syötettävä luku
     $errors[] = array();
 
-    if($this->pelaajat_min != '' || $this->pelaajat_min != null || is_numeric($this->pelaajat_min)){
+//    if($this->pelaajat_min != '' || $this->pelaajat_min != null || is_numeric($this->pelaajat_min)){
+    if(is_numeric($this->pelaajat_min)){
       $errors[] = 'Pelaajien minimimäärän on oltava numero.';
     }
     return $errors;
@@ -135,7 +138,8 @@ class Peli extends BaseModel{
     // Pelaajamäärän validointi: jätettävä tyhjäksi tai syötettävä luku
     $errors[] = array();
 
-    if($this->pelaajat_max != '' || $this->pelaajat_max != null || is_numeric($this->pelaajat_max)){
+//    if($this->pelaajat_max != '' || $this->pelaajat_max != null || is_numeric($this->pelaajat_max)){
+    if(is_numeric($this->pelaajat_max)){
       $errors[] = 'Pelaajien minimimäärän on oltava numero.';
     }
     return $errors;
@@ -143,6 +147,17 @@ class Peli extends BaseModel{
 
   public static function destroy($id){
     // Pelien deletointi
+      DB::query('DELETE from Peli WHERE id = ' . $id);
+  }
+
+
+  public static function edit($uusitaulukko){
+
+    // Talletetaan parametrinä annetun taulukon tiedot tietokantaan, otetaan rivi talteen
+    $row = DB::query('UPDATE Peli SET nimi = :nimi, omistaja = :omistaja, julkaisuvuosi = :julkaisuvuosi, pelaajat_min = :pelaajat_min, pelaajat_max = :pelaajat_max, kuvaus = :kuvaus WHERE id = :id RETURNING id', $uusitaulukko);
+
+    // Palautetaan lisätyn pelin rivin id
+    return $row[0]['id'];
   }
 
 }

@@ -14,7 +14,8 @@
   </div>
   {% endif %}
 
-
+  <h2>pelin id: {{peli.id}}.</h2>
+  
   <form method="post" action="{{base_path}}/game/{{peli.id}}/edit">
 
     <div class="form-group">
@@ -23,7 +24,7 @@
     </div>
 
     <div class="form-group">
-      <label>Omistaja</label>
+      <label>Omistaja (numerona)</label>
       <input name="omistaja" class="form-control" type="text" value="{{attribuutit.omistaja}}"
     </div>
 
@@ -60,7 +61,7 @@
     </div>
 
     <div class="form-group">
-      <button type="submit" class="btn btn-primary">Lisää peli</button>
+      <button type="submit" class="btn btn-primary">Muokkaa peliä</button>
     </div>
 
   </form>

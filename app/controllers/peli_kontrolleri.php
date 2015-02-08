@@ -78,7 +78,7 @@ class PeliKontrolleri extends BaseController{
 
 
 	// Pelin päivittäminen järjestelmässä
-	public static function game_update($id){
+	public static function update($id){
 		// otetaan updatesta attribuutit talteen
 		$params =  $_POST;
 
@@ -100,7 +100,7 @@ class PeliKontrolleri extends BaseController{
 
 		if(count($virheet > 0)) {
 			// epäonnistui, takaisin editointiin, kirjoitetaan virheet sivulle
-			self::render_view('/game/edit.html', array('virheet' => $virheet, 'attribuutit' => $attribuutit));
+			self::render_view('/game/' . $id . '/edit.html', array('virheet' => $virheet, 'attribuutit' => $attribuutit));
 		} else {
 			// onnistui, takaisin sivulle onnistuneen tekstin kera
 			Peli::update($id, $attribuutit);

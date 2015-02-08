@@ -3,6 +3,10 @@
 {% block content %}
   <h1>Pursiksen pelikirjasto</h1>
 
+  {% if message != '' %}
+  <div class="alert alert-success">{{message}}</div>
+  {% endif %}
+
   <p>
     <a href="{{base_path}}/game/uusi" class="btn btn-success">Lisää peli</a>
   </p>

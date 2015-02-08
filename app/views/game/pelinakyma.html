@@ -8,9 +8,23 @@
 
   <h1>{{peli.nimi}}</h1>
   <!-- Painikkeet tähän -->
-  <p>
-    <button class="btn btn-danger">Poista</button> <a href="{{base_path}}/game/{{peli.id}}/edit" class="btn btn-default">Muokkaa</a>
-  </p>
+    <table border="0" cellpadding="2" cellspacing="2">
+        <tr>
+            <td>
+                <form method="post" action="{{base_path}}/game/{{peli.id}}/delete">
+                    <button type="submit" class="btn btn-danger">Poista</button>
+                </form>
+            </td>
+            <td>&nbsp;</td>
+            <td>
+                <form method="get" action="{{base_path}}/game/{{peli.id}}/edit">
+                    <button type="submit" class="btn btn-default">Muokkaa</button>
+                </form>
+            </td>
+        </tr>
+    </table>
+  <br>
+
   <!-- Tiedot tulee listana tähän -->
   <ul>
     <li><strong>Julkaisuvuosi:</strong> {{peli.julkaisuvuosi}}</li>

@@ -64,13 +64,18 @@
   });
 
   // Pelin poistaminen
-  $app->post('/game/:id/destroy', function($id){
+  $app->post('/game/:id/delete', function($id){
     PeliKontrolleri::destroy($id);
   });
 
   // Login-sivu
   $app->get('/login', function(){
-    PeliKontrolleri::login();
+    KayttajaKontrolleri::login();
+  });
+
+  // Loggautuminen
+  $app->post('/login', function(){
+    KayttajaKontrolleri::handle_login();
   });
 
 
