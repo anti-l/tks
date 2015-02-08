@@ -2,69 +2,61 @@
 
 {% block content %}
 
-  <h1>Uusi peli</h1>
+<h1>Uusi peli</h1>
 
-  <!-- Onkohan nää virheet = errors ja error ihan oikein? Perus for-each kyllä sanois niin. -->
-
-  {% if virheet %}
-  <div class="alert alert-danger">
+{% if virheet %}
+<div class="alert alert-danger">
     <ul>
-      {% for error in virheet %}
-      <li>{{error}}</li>
-      {% endfor %}
+        {% for error in virheet %}
+        <li>{{error}}</li>
+        {% endfor %}
     </ul>
-  </div>
-  {% endif %}
+</div>
+{% endif %}
 
 
-  <form method="post" action="{{base_path}}/game/uusi">
+
+<form method="post" action="{{base_path}}/game/uusi">
 
     <div class="form-group">
-      <label>Nimi [vaaditaan, min 3 merkkiä]</label>
-      <input name="nimi" class="form-control" type="text" value="{{attribuutit.nimi}}">
+        <label>Nimi [vaaditaan]</label>
+        <input name="nimi" class="form-control" type="text" value="{{attribuutit.nimi}}">
     </div>
 
     <div class="form-group">
-      <label>Omistaja [vaaditaan, numerot 1-2 (käyttäjän id)]</label>
-      <input name="omistaja" class="form-control" type="text" value="{{attribuutit.omistaja}}"
+        <label>Omistaja [vaaditaan, numerot 1-2 (käyttäjän id)]</label>
+        <input name="omistaja" class="form-control" type="text" value="{{attribuutit.omistaja}}"
     </div>
 
     <div class="form-group">
-      <label>Julkaisuvuosi [vaaditaan, numero]</label>
-      <input name="julkaisuvuosi" class="form-control" type="text" value="{{attribuutit.julkaisuvuosi}}">
+        <label>Julkaisuvuosi [vaaditaan, numero]</label>
+        <input name="julkaisuvuosi" class="form-control" type="text" value="{{attribuutit.julkaisuvuosi}}">
     </div>
 
     <div class="form-group">
-      <label>Julkaisija [vaaditaan, vapaa teksti]</label>
-      <input name="julkaisija" class="form-control" type="text" value="{{attribuutit.julkaisija}}">
-    </div>
-
-<!--
-    <div class="form-group">
-      <label>Tyyppi</label>
-      <input name="tyyppi" class="form-control" type="text" value="{{attribuutit.tyyppi}}">
-    </div>
--->
-
-    <div class="form-group">
-      <label>Pelaajien minimimäärä [vaaditaan]</label>
-      <input name="pelaajat_min" class="form-control" type="text" value="{{attribuutit.pelaajat_min}}">
+        <label>Julkaisija [vaaditaan, vapaa teksti]</label>
+        <input name="julkaisija" class="form-control" type="text" value="{{attribuutit.julkaisija}}">
     </div>
 
     <div class="form-group">
-      <label>Pelaajien maksimimäärä [vaaditaan]</label>
-      <input name="pelaajat_max" class="form-control" type="text" value="{{attribuutit.pelaajat_max}}">
+        <label>Pelaajien minimimäärä [vaaditaan]</label>
+        <input name="pelaajat_min" class="form-control" type="text" value="{{attribuutit.pelaajat_min}}">
     </div>
 
     <div class="form-group">
-      <label>Kuvaus</label>
-      <textarea name="kuvaus" class="form-control" value="{{attribuutit.kuvaus}}"></textarea>
+        <label>Pelaajien maksimimäärä [vaaditaan]</label>
+        <input name="pelaajat_max" class="form-control" type="text" value="{{attribuutit.pelaajat_max}}">
     </div>
 
     <div class="form-group">
-      <button type="submit" class="btn btn-primary">Lisää peli</button>
+        <label>Kuvaus</label>
+        <textarea name="kuvaus" class="form-control" value="{{attribuutit.kuvaus}}"></textarea>
     </div>
 
-  </form>
+    <div class="form-group">
+        <button type="submit" class="btn btn-primary">Lisää peli</button>
+    </div>
+
+</form>
 
 {% endblock %}

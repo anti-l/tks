@@ -20,10 +20,9 @@ class KayttajaKontrolleri extends BaseController{
     }
   }
     
-  public static function handle_logout(){
-//      $user = null;
+  public static function logout(){
       $_SESSION['user'] = null;
-      self::redirect_to('/');
+      self::redirect_to('/', array('message' => 'Olet kirjautunut ulos.'));
   }
 }
 

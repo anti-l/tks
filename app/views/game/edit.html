@@ -4,66 +4,59 @@
 
 <h1>Pelin {{peli.nimi}} editointisivu</h1>
 
-  {% if virheet %}
-  <div class="alert alert-danger">
+{% if virheet %}
+<div class="alert alert-danger">
     <ul>
-      {% for error in virheet %}
-      <li>{{error}}</li>
-      {% endfor %}
+        {% for error in virheet %}
+        <li>{{error}}</li>
+        {% endfor %}
     </ul>
-  </div>
-  {% endif %}
+</div>
+{% endif %}
 
-  <h2>pelin id: {{peli.id}}.</h2>
-  
-  <form method="post" action="{{base_path}}/game/{{peli.id}}/edit">
+<h2>pelin id: {{peli.id}}.</h2>
+
+<form method="post" action="{{base_path}}/game/{{peli.id}}/edit">
 
     <div class="form-group">
-      <label>Nimi</label>
-      <input name="nimi" class="form-control" type="text" value="{{attribuutit.nimi}}">
+        <label>Nimi</label>
+        <input name="nimi" class="form-control" type="text" value="{{attribuutit.nimi}}">
     </div>
 
     <div class="form-group">
-      <label>Omistaja (numerona)</label>
-      <input name="omistaja" class="form-control" type="text" value="{{attribuutit.omistaja}}"
+        <label>Omistaja (numerona)</label>
+        <input name="omistaja" class="form-control" type="text" value="{{attribuutit.omistaja}}"
     </div>
 
     <div class="form-group">
-      <label>Julkaisuvuosi</label>
-      <input name="julkaisuvuosi" class="form-control" type="text" value="{{attribuutit.julkaisuvuosi}}">
+        <label>Julkaisuvuosi</label>
+        <input name="julkaisuvuosi" class="form-control" type="text" value="{{attribuutit.julkaisuvuosi}}">
     </div>
 
     <div class="form-group">
-      <label>Julkaisija</label>
-      <input name="julkaisija" class="form-control" type="text" value="{{attribuutit.julkaisija}}">
-    </div>
-
-<!--
-    <div class="form-group">
-      <label>Tyyppi</label>
-      <input name="tyyppi" class="form-control" type="text" value="{{attribuutit.tyyppi}}">
-    </div>
--->
-
-    <div class="form-group">
-      <label>Pelaajien minimimäärä</label>
-      <input name="pelaajat_min" class="form-control" type="text" value="{{attribuutit.pelaajat_min}}">
+        <label>Julkaisija</label>
+        <input name="julkaisija" class="form-control" type="text" value="{{attribuutit.julkaisija}}">
     </div>
 
     <div class="form-group">
-      <label>Pelaajien maksimimäärä</label>
-      <input name="pelaajat_max" class="form-control" type="text" value="{{attribuutit.pelaajat_max}}">
+        <label>Pelaajien minimimäärä</label>
+        <input name="pelaajat_min" class="form-control" type="text" value="{{attribuutit.pelaajat_min}}">
     </div>
 
     <div class="form-group">
-      <label>Kuvaus</label>
-      <textarea name="kuvaus" class="form-control" value="{{attribuutit.kuvaus}}"></textarea>
+        <label>Pelaajien maksimimäärä</label>
+        <input name="pelaajat_max" class="form-control" type="text" value="{{attribuutit.pelaajat_max}}">
     </div>
 
     <div class="form-group">
-      <button type="submit" class="btn btn-primary">Muokkaa peliä</button>
+        <label>Kuvaus</label>
+        <textarea name="kuvaus" class="form-control" value="{{attribuutit.kuvaus}}"></textarea>
     </div>
 
-  </form>
+    <div class="form-group">
+        <button type="submit" class="btn btn-primary">Muokkaa peliä</button>
+    </div>
+
+</form>
 
 {% endblock %}

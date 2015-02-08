@@ -4,7 +4,6 @@ class BaseController {
 
     public static function get_user_logged_in() {
         // Toteuta kirjautuneen käyttäjän haku tähän
-        
         // Katsotaan onko user-avain sessiossa
         if (isset($_SESSION['user'])) {
             $user_id = $_SESSION['user'];
@@ -21,7 +20,12 @@ class BaseController {
 
     public static function check_logged_in() {
         // Toteuta kirjautumisen tarkistus tähän
+
+        if (!isset($_SESSION['user'])) {
+            self::redirect_to('/login', array('message' => 'Kirjaudu ensin sisään!'));
+        }
     }
+
 
     public static function render_view($view, $content = array()) {
         Twig_Autoloader::register();
