@@ -28,6 +28,7 @@ CREATE TABLE Peli(
 CREATE TABLE Arvostelu(
 	id SERIAL PRIMARY KEY ,
 	arvostelija INTEGER REFERENCES Kayttaja(id),
+	peli INTEGER REFERENCES Peli(id),
 	arvostelu varchar(5000),
 	arvio decimal
 );
@@ -35,6 +36,7 @@ CREATE TABLE Arvostelu(
 CREATE TABLE Statistiikka(
 	id SERIAL PRIMARY KEY ,
 	peli_id INTEGER REFERENCES Peli(id),
+	kayttaja_id INTEGER REFERENCES Kayttaja(id),
 	stats varchar(5000)
 );
 
