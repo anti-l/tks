@@ -1,5 +1,11 @@
 -- Lisää CREATE TABLE lauseet tähän tiedostoon
 
+CREATE TABLE Genre(
+	id SERIAL PRIMARY KEY ,
+	genretxt varchar(255)
+);
+
+
 CREATE TABLE Kayttaja(
 	id SERIAL PRIMARY KEY ,
 	nimi varchar(255) NOT NULL,
@@ -31,12 +37,6 @@ CREATE TABLE Statistiikka(
 	peli_id INTEGER REFERENCES Peli(id),
 	stats varchar(5000)
 );
-
-CREATE TABLE Genre(
-	id SERIAL PRIMARY KEY ,
-	genretxt varchar(255)
-);
-
 
 CREATE TABLE Peli_Genre(
 	id SERIAL PRIMARY KEY ,
