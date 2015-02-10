@@ -37,14 +37,12 @@ class PeliKontrolleri extends BaseController {
             //'tyyppi' => $params['tyyppi'],
             'pelaajat_min' => $params['pelaajat_min'],
             'pelaajat_max' => $params['pelaajat_max'],
-//            'lisayspaiva' => date(Y-m-d),
+            'lisayspaiva' => date("Y-m-d"),
             'kuvaus' => $params['kuvaus']
         );
 
         $peli = new Peli($attribuutit);
         $virheet = $peli->errors();
-
-
 
         if (count($virheet) == 0) {
             // Jos attribuutit on kunnossa, luodaan peli ja siirretään käyttäjä esittelysivulle
@@ -65,8 +63,7 @@ class PeliKontrolleri extends BaseController {
         $peli = Peli::find($id);
 
         // Näytetään haetun pelin tiedot
-//        self::render_view('game/edit.html', array('attribuutit' => $peli));
-        self::render_view('game/edit.html', array('attribuutit' => $peli, 'peli' => $peli));
+        self::render_view('game/edit.html', array('attribuutit' => $peli));
     }
 
     // Pelin päivittäminen järjestelmässä
@@ -76,6 +73,7 @@ class PeliKontrolleri extends BaseController {
 
         // talletetaan attribuutit omaan muuttujataulukkoon oikein
         $attribuutit = array(
+            'id' => $params['id'],
             'nimi' => $params['nimi'],
             'omistaja' => $params['omistaja'],
             'julkaisija' => $params['julkaisija'],
@@ -90,15 +88,14 @@ class PeliKontrolleri extends BaseController {
         $peli = new Peli($attribuutit);
         $virheet = $peli->errors();
 
-        if (count($virheet > 0)) {
-            // epäonnistui, takaisin editointiin, kirjoitetaan virheet sivulle
-//            self::render_view('/game/edit.html', array('virheet' => $virheet, 'attribuutit' => $attribuutit, 'peli' => $peli));
-            self::render_view('/game/edit.html', array('virheet' => $virheet, 'attribuutit' => $attribuutit));
-        } else {
+//        if (count($virheet > 0)) {
+//            // epäonnistui, takaisin editointiin, kirjoitetaan virheet sivulle
+//            self::render_view('/game/edit.html', array('virheet' => $virheet, 'attribuutit' => $attribuutit));
+//        } else {
             // onnistui, takaisin sivulle onnistuneen tekstin kera
-            Peli::update($id);
-            redirect_to('/game/' . $id, array('message' => 'Muokkaus onnistui.'));
-        }
+            $id = Peli::update($attribuutit);
+            self::redirect_to('/game/' . $id, array('message' => 'Muokkaus onnistui.'));
+//        }
     }
 
     // Pelin poistaminen järjestelmästä

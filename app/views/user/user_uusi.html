@@ -1,0 +1,42 @@
+{% extends "base.html" %}
+
+{% block content %}
+
+<h1>Uusi k&auml;ytt&auml;j&auml;</h1>
+
+{% if virheet %}
+<div class="alert alert-danger">
+    <ul>
+        {% for error in virheet %}
+        <li>{{error}}</li>
+        {% endfor %}
+    </ul>
+</div>
+{% endif %}
+
+
+{% if user_logged_in %}
+<form method="post" action="{{base_path}}/user/uusi">
+
+    <div class="form-group">
+        <label>Nimi [vaaditaan]</label>
+        <input name="nimi" class="form-control" type="text" value="{{attribuutit.nimi}}">
+    </div>
+    
+    <div class="form-group">
+        <label>Salasana [vaaditaan]</label>
+        <input name="salasana" class="form-control" type="text" value="{{attribuutit.salasana}}">
+    </div>
+    
+    <div class="form-group">
+        <button type="submit" class="btn btn-primary">Lisää käyttäjä</button>
+    </div>
+    
+</form>
+{% else %}
+Kirjaudu sisään luodaksesi uusi k&auml;ytt&auml;j&auml;.
+{% endif %}
+{% endblock %}
+
+
+

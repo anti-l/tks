@@ -92,5 +92,34 @@ $app->post('/logout', function() {
     KayttajaKontrolleri::logout();
 });
 
+// Käyttäjien listaaminen
+$app->get('/user', function() {
+    KayttajaKontrolleri::list_users();
+});
+
+// Uuden käyttäjän luominen
+$app->get('/user/uusi', function() {
+    KayttajaKontrolleri::user_uusi();
+});
+
+// Uuden käyttäjän tallentaminen
+$app->post('/user/uusi', function() {
+    KayttajaKontrolleri::user_tallenna();
+});
+
+// Käyttäjän poistaminen
+$app->post('/user/:id/delete', function($id) {
+    KayttajaKontrolleri::user_poista($id);
+});
+
+// Käyttäjän editointi
+$app->get('/user/:id/edit', function($id) {
+    KayttajaKontrolleri::user_edit($id);
+});
+
+// Käyttäjän editointi ja päivitys
+$app->post('/user/:id/edit', function($id) {
+    KayttajaKontrolleri::user_update($id);
+});
 
 

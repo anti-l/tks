@@ -19,7 +19,7 @@ class Peli extends BaseModel {
         $pelit = array();
 
         // Haetaan tietokannasta rivit
-        $rows = DB::query('SELECT * from Peli');
+        $rows = DB::query('SELECT * from Peli ORDER BY nimi');
 
         // Käydään rivit läpi
         foreach ($rows as $row) {
@@ -69,8 +69,31 @@ class Peli extends BaseModel {
 
     public static function create($uusitaulukko) {
 
+        // Onko mahdollista, että erroreita tulee, koska taulukossa on tyhjiä alkioita?
+
+        // MALLI ALKAA
+        // Käydään rivit läpi
+        /*
+        foreach ($rows as $row) {
+            $pelit[] = new Peli(array(
+                'id' => $row['id'],
+                'omistaja' => $row['omistaja'],
+                'nimi' => $row['nimi'],
+                'julkaisuvuosi' => $row['julkaisuvuosi'],
+                'julkaisija' => $row['julkaisija'],
+                //'genre' => $row['genre'],
+                'tyyppi' => $row['tyyppi'],
+                'pelaajat_min' => $row['pelaajat_min'],
+                'pelaajat_max' => $row['pelaajat_max'],
+                'lisayspaiva' => $row['lisayspaiva'],
+                'kuvaus' => $row['kuvaus']
+            ));
+        }
+        */
+        // MALLI LOPPUU
+
         // Talletetaan parametrinä annetun taulukon tiedot tietokantaan, otetaan rivi talteen
-        $row = DB::query('INSERT INTO Peli (nimi, omistaja, julkaisuvuosi, julkaisija, pelaajat_min, pelaajat_max, kuvaus) VALUES (:nimi, :omistaja, :julkaisuvuosi, :julkaisija, :pelaajat_min, :pelaajat_max, :kuvaus) RETURNING id', $uusitaulukko);
+        $row = DB::query('INSERT INTO Peli (nimi, omistaja, julkaisuvuosi, julkaisija, pelaajat_min, pelaajat_max, kuvaus, lisayspaiva) VALUES (:nimi, :omistaja, :julkaisuvuosi, :julkaisija, :pelaajat_min, :pelaajat_max, :kuvaus, :lisayspaiva) RETURNING id', $uusitaulukko);
 
         // Palautetaan lisätyn pelin rivin id
         return $row[0]['id'];
@@ -84,18 +107,17 @@ class Peli extends BaseModel {
     public static function update($uusitaulukko) {
 
         // Talletetaan parametrinä annetun taulukon tiedot tietokantaan, otetaan rivi talteen
-        $row = DB::query('UPDATE Peli SET nimi = :nimi, omistaja = :omistaja, julkaisuvuosi = :julkaisuvuosi, pelaajat_min = :pelaajat_min, pelaajat_max = :pelaajat_max, kuvaus = :kuvaus WHERE id = :id RETURNING id', $uusitaulukko);
+        $row = DB::query('UPDATE Peli SET nimi = :nimi, omistaja = :omistaja, julkaisija = :julkaisija, julkaisuvuosi = :julkaisuvuosi, pelaajat_min = :pelaajat_min, pelaajat_max = :pelaajat_max, kuvaus = :kuvaus WHERE id = :id RETURNING id', $uusitaulukko);
 
         // Palautetaan lisätyn pelin rivin id
         return $row[0]['id'];
     }
 
-    
 // Validaattorit tästä eteenpäin
-    
-    
+
+
     public function validate_nimi() {
- 
+
         // Nimen validointi: Nimi ei saa olla tyhjä, nimessä pitää olla vähintään 3 merkkiä.
         $validointivirheet = array();
 

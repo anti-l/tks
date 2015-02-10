@@ -55,4 +55,24 @@ class Kayttaja extends BaseModel {
         return null;
     }
 
+    
+    
+    public static function all() {
+        $kayttajat = array();
+
+        // Haetaan tietokannasta rivit
+        $rows = DB::query('SELECT * from Kayttaja ORDER BY nimi');
+
+        // Käydään rivit läpi
+        foreach ($rows as $row) {
+            $kayttajat[] = new Kayttaja(array(
+                'id' => $row['id'],
+                'nimi' => $row['nimi'],
+                'salasana' => $row['salasana']
+            ));
+        }
+
+        return $kayttajat;
+    }
+
 }

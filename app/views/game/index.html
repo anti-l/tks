@@ -1,55 +1,58 @@
 {% extends "base.html" %}
 
 {% block content %}
-  <h1>Pursiksen pelikirjasto</h1>
+<h1>Pursiksen pelikirjasto</h1>
 
-  {% if message != '' %}
-  <div class="alert alert-success">{{message}}</div>
-  {% endif %}
+{% if message != '' %}
+<div class="alert alert-success">{{message}}</div>
+{% endif %}
 
-  <p>
-    {% block kirjautuneena_voi_lisata %}
-      {% if user_logged_in %}
-      <a href="{{base_path}}/game/uusi" class="btn btn-success">Lisää peli</a>
-      {% else %}
-      Kirjaudu sisään lisätäksesi, muokataksesi tai poistaaksesi pelejä.
-      {% endif %}
-    {% endblock %}
-  </p>
-
-  <table class="table table-striped table-bordered">
+<table class="table table-striped table-bordered">
     <thead>
-      <tr>
-        <th>Nimi</th>
-        <th>Julkaisuvuosi</th>
-        <th>Julkaisija</th>
-        <th>Pelaajia Min</th>
-        <th>Pelaajia Max</th>
-        <th>Lisäyspäivä</th>
-          {% block kirjautuneena_voi_muokata1 %}
+        <tr>
+            <th>Nimi</th>
+            <th>Julkaisuvuosi</th>
+            <th>Julkaisija</th>
+            <th>Pelaajia Min</th>
+            <th>Pelaajia Max</th>
+            <th>Lisäyspäivä</th>
+            {% block kirjautuneena_voi_muokata1 %}
             {% if user_logged_in %}
-        <th></th>
+            <th></th>
             {% endif %}
-          {% endblock %}
-      </tr>
+            {% endblock %}
+        </tr>
     </thead>
 
     <tbody>
-      {% for peli in pelit %}
+        {% for peli in pelit %}
         <tr>
-          <td><a href="{{base_path}}/game/{{peli.id}}">{{peli.nimi}}</a></td>
-          <td>{{peli.julkaisuvuosi}}</td>
-          <td>{{peli.julkaisija}}</td>
-          <td>{{peli.pelaajat_min}}</td>
-          <td>{{peli.pelaajat_max}}</td>
-          <td>{{peli.lisayspaiva}}</td>
-          {% block kirjautuneena_voi_muokata2 %}
+            <td><a href="{{base_path}}/game/{{peli.id}}">{{peli.nimi}}</a></td>
+            <td>{{peli.julkaisuvuosi}}</td>
+            <td>{{peli.julkaisija}}</td>
+            <td>{{peli.pelaajat_min}}</td>
+            <td>{{peli.pelaajat_max}}</td>
+            <td>{{peli.lisayspaiva}}</td>
+            {% block kirjautuneena_voi_muokata2 %}
             {% if user_logged_in %}
-          <td><a class="btn btn-default btn-sm" href="{{base_path}}/game/{{peli.id}}/edit">Muokkaa</a></td>
+            <td><a class="btn btn-default btn-sm" href="{{base_path}}/game/{{peli.id}}/edit">Muokkaa</a></td>
             {% endif %}
-          {% endblock %}
+            {% endblock %}
         </tr>
-      {% endfor %}
+        {% endfor %}
+        {% block kirjautuneena_voi_lisata %}
+        {% if user_logged_in %}
+        <tr>
+            <td colspan="6">&nbsp;</td>
+            <td><a class="btn btn-success btn-sm" href="{{base_path}}/game/uusi">Luo uusi</a></td>
+        </tr>
     </tbody>
-  </table>
+</table>
+{% else %}
+    </tbody>
+</table>
+<p>Kirjaudu sisään lisätäksesi, muokataksesi tai poistaaksesi pelejä.</p>
+{% endif %}
+{% endblock %}
+
 {% endblock %}
