@@ -22,17 +22,29 @@
         <label>Nimi [vaaditaan]</label>
         <input name="nimi" class="form-control" type="text" value="{{attribuutit.nimi}}">
     </div>
-    
+
     <div class="form-group">
         <label>Salasana [vaaditaan]</label>
         <input name="salasana" class="form-control" type="text" value="{{attribuutit.salasana}}">
     </div>
-    
-    <div class="form-group">
-        <button type="submit" class="btn btn-primary">Muokkaa</button>
-    </div>
-    
 </form>
+
+<table border="0">
+    <tr>
+        <td>
+            <form method="post" action="{{base_path}}/user/{{attribuutit.id}}/edit">
+                <button type="submit" class="btn btn-primary">Muokkaa</button>
+            </form>
+        </td>
+        <td> &nbsp; </td>
+        <td>
+            <form method="post" action="{{base_path}}/user/{{attribuutit.id}}/delete">
+                <button type="submit" class="btn btn-danger">Poista</button>
+            </form>
+        </td>
+    </tr>
+</table>
+
 {% else %}
 Kirjaudu sisään luodaksesi uusi k&auml;ytt&auml;j&auml;.
 {% endif %}

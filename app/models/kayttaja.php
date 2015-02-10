@@ -8,6 +8,7 @@ class Kayttaja extends BaseModel {
     // Konstruktori
     public function __construct($attributes) {
         parent::__construct($attributes);
+        $this->validators = array('validate_nimi', 'validate_salasana');
     }
 
     public static function find($user_id) {
@@ -55,8 +56,6 @@ class Kayttaja extends BaseModel {
         return null;
     }
 
-    
-    
     public static function all() {
         $kayttajat = array();
 
@@ -73,6 +72,42 @@ class Kayttaja extends BaseModel {
         }
 
         return $kayttajat;
+    }
+
+    public static function luo($attribuutit) {
+        // Talletetaan parametrinä annetun taulukon tiedot tietokantaan, otetaan rivi talteen
+        $row = DB::query('INSERT INTO Kayttaja (nimi, salasana) VALUES (:nimi, :salasana) RETURNING id', $attribuutit);
+
+        // Palautetaan lisätyn pelin rivin id
+        return $row[0]['id'];
+    }
+
+        public static function poista($id) {
+        // Käyttäjän poistaminen
+        DB::query('DELETE from Kayttaja WHERE id=' . $id);
+    }
+
+
+    public function validate_nimi() {
+
+        // Nimen validointi: Nimi ei saa olla tyhjä.
+        $validointivirheet = array();
+
+        if ($this->nimi == '' || $this->nimi == null) {
+            $validointivirheet[] = 'Nimi ei saa olla tyhjä.';
+        }
+        return $validointivirheet;
+    }
+
+    public function validate_salasana() {
+
+        // Salasanan validointi: Salasana ei saa olla tyhjä.
+        $validointivirheet = array();
+
+        if ($this->salasana == '' || $this->salasana == null) {
+            $validointivirheet[] = 'Salasana ei saa olla tyhjä.';
+        }
+        return $validointivirheet;
     }
 
 }

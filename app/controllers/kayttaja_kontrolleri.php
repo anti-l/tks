@@ -42,8 +42,9 @@ class KayttajaKontrolleri extends BaseController {
     }
     
     public static function user_poista($id){
+        Kayttaja::poista($id);
         $kayttajat = Kayttaja::all();
-        self::render_view('user/users.html', array('kayttajat' => $kayttajat));
+        self::redirect_to('/user', array('message' => 'Kayttaja poistettu.'));
     }
     
     public static function user_uusi(){
@@ -51,7 +52,26 @@ class KayttajaKontrolleri extends BaseController {
     }
     
     public static function user_tallenna(){
-        self::redirect_to('/user', array('message' => 'Toiminto tulossa.'));
+        //Post-pyynnön muuttujat haetaan $_POST -assosiaatiolistasta
+        $params = $_POST;
+
+        $attribuutit = array(
+            'nimi' => $params['nimi'],
+            'salasana' => $params['salasana']
+        );
+
+        $uusi_kayttaja = new Kayttaja($attribuutit);
+        $virheet = $uusi_kayttaja->errors();
+
+        if (count($virheet) == 0) {
+            // Jos attribuutit on kunnossa, luodaan peli ja siirretään käyttäjä esittelysivulle
+            $id = Kayttaja::luo($attribuutit);
+//            self::redirect_to('/user/' . $id . '/edit', array('message' => 'Kayttaja lisätty.'));
+            self::redirect_to('/user', array('message' => 'Kayttaja lisätty.'));
+        } else {
+            // Käyttäjän tiedoissa oli jotain vikaa, palautetaan virheet ja attribuutit
+            self::render_view('user/uusi.html', array('virheet' => $virheet, 'attribuutit' => $attribuutit));
+        }
     }
     
 }

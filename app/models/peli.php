@@ -10,7 +10,7 @@ class Peli extends BaseModel {
         parent::__construct($attributes);
 
         //$this->validators = array('validate_nimi', 'validate_omistaja', 'validate_julkaisuvuosi', 'validate_pelaajat_min', 'validate_pelaajat_max');
-        //$this->validators = array('validate_nimi', 'validate_omistaja');
+//        $this->validators = array('validate_nimi', 'validate_omistaja');
         $this->validators = array('validate_nimi');
     }
 
@@ -68,35 +68,14 @@ class Peli extends BaseModel {
     }
 
     public static function create($uusitaulukko) {
-
         // Onko mahdollista, että erroreita tulee, koska taulukossa on tyhjiä alkioita?
-
-        // MALLI ALKAA
-        // Käydään rivit läpi
-        /*
-        foreach ($rows as $row) {
-            $pelit[] = new Peli(array(
-                'id' => $row['id'],
-                'omistaja' => $row['omistaja'],
-                'nimi' => $row['nimi'],
-                'julkaisuvuosi' => $row['julkaisuvuosi'],
-                'julkaisija' => $row['julkaisija'],
-                //'genre' => $row['genre'],
-                'tyyppi' => $row['tyyppi'],
-                'pelaajat_min' => $row['pelaajat_min'],
-                'pelaajat_max' => $row['pelaajat_max'],
-                'lisayspaiva' => $row['lisayspaiva'],
-                'kuvaus' => $row['kuvaus']
-            ));
-        }
-        */
-        // MALLI LOPPUU
 
         // Talletetaan parametrinä annetun taulukon tiedot tietokantaan, otetaan rivi talteen
         $row = DB::query('INSERT INTO Peli (nimi, omistaja, julkaisuvuosi, julkaisija, pelaajat_min, pelaajat_max, kuvaus, lisayspaiva) VALUES (:nimi, :omistaja, :julkaisuvuosi, :julkaisija, :pelaajat_min, :pelaajat_max, :kuvaus, :lisayspaiva) RETURNING id', $uusitaulukko);
 
         // Palautetaan lisätyn pelin rivin id
         return $row[0]['id'];
+//        return $row;
     }
 
     public static function destroy($id) {
