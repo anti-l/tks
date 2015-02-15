@@ -10,7 +10,7 @@ class Peli extends BaseModel {
         parent::__construct($attributes);
 
         //$this->validators = array('validate_nimi', 'validate_omistaja', 'validate_julkaisuvuosi', 'validate_pelaajat_min', 'validate_pelaajat_max');
-//        $this->validators = array('validate_nimi', 'validate_omistaja');
+        //$this->validators = array('validate_nimi', 'validate_omistaja');
         $this->validators = array('validate_nimi');
     }
 
@@ -41,7 +41,32 @@ class Peli extends BaseModel {
         return $pelit;
     }
 
-    // Metori, joka hakee tietyn pelin tietokannasta
+    /* Tää toteutus ei skulaa vielä.
+      // Metodi, joka etsii tietokannasta tietyn nimisiä pelejä ja palauttaa ne oliotauluna
+      public static function search($options) {
+      //$user_id = $options['user_id'];
+      $query = 'SELECT * FROM Peli ';
+      //$options = array('user_id' => $user_id);
+
+      if (isset($options['search'])) {
+      $like = '%' . $options['search'] . '%';
+      $query .= ' WHERE nimi LIKE :like ORDER BY nimi';
+      $options['like'] = $like;
+      }
+
+      $rows = DB::query($query, $options);
+      $games = array();
+
+      foreach ($rows as $row) {
+      $games[] = new Game($row);
+      }
+
+      return $games;
+      }
+     * 
+     */
+
+    // Metodi, joka hakee tietyn pelin tietokannasta
     public static function find($id) {
         $rows = DB::query('SELECT * from Peli WHERE id = :id LIMIT 1', array('id' => $id));
 
@@ -69,13 +94,12 @@ class Peli extends BaseModel {
 
     public static function create($uusitaulukko) {
         // Onko mahdollista, että erroreita tulee, koska taulukossa on tyhjiä alkioita?
-
         // Talletetaan parametrinä annetun taulukon tiedot tietokantaan, otetaan rivi talteen
         $row = DB::query('INSERT INTO Peli (nimi, omistaja, julkaisuvuosi, julkaisija, pelaajat_min, pelaajat_max, kuvaus, lisayspaiva) VALUES (:nimi, :omistaja, :julkaisuvuosi, :julkaisija, :pelaajat_min, :pelaajat_max, :kuvaus, :lisayspaiva) RETURNING id', $uusitaulukko);
 
         // Palautetaan lisätyn pelin rivin id
         return $row[0]['id'];
-//        return $row;
+        //return $row;
     }
 
     public static function destroy($id) {
@@ -92,6 +116,33 @@ class Peli extends BaseModel {
         return $row[0]['id'];
     }
 
+    // Metodi, joka hakee pelit tietokannasta ja palauttaa ne olioina
+    public static function all_owner($id) {
+        $pelit = array();
+
+        // Haetaan tietokannasta rivit
+        $rows = DB::query('SELECT * from Peli WHERE omistaja=' . $id . ' ORDER BY nimi');
+
+        // Käydään rivit läpi
+        foreach ($rows as $row) {
+            $pelit[] = new Peli(array(
+                'id' => $row['id'],
+                'omistaja' => $row['omistaja'],
+                'nimi' => $row['nimi'],
+                'julkaisuvuosi' => $row['julkaisuvuosi'],
+                'julkaisija' => $row['julkaisija'],
+                'tyyppi' => $row['tyyppi'],
+                'pelaajat_min' => $row['pelaajat_min'],
+                'pelaajat_max' => $row['pelaajat_max'],
+                'lisayspaiva' => $row['lisayspaiva'],
+                'kuvaus' => $row['kuvaus']
+            ));
+        }
+
+        return $pelit;
+    }
+
+    
 // Validaattorit tästä eteenpäin
 
 
@@ -122,7 +173,7 @@ class Peli extends BaseModel {
         // Julkaisuvuoden validointi: oltava tyhjä tai luku
         $validointivirheet[] = array();
 
-//    if($this->julkaisuvuosi != '' || $this->julkaisuvuosi != null || is_numeric($this->julkaisuvuosi)){
+        //if($this->julkaisuvuosi != '' || $this->julkaisuvuosi != null || is_numeric($this->julkaisuvuosi)){
         if (is_numeric($this->julkaisuvuosi)) {
             $validointivirheet[] = 'Julkaisuvuosi on oltava numero.';
         }
@@ -134,7 +185,7 @@ class Peli extends BaseModel {
         // Pelaajamäärän validointi: jätettävä tyhjäksi tai syötettävä luku
         $validointivirheet[] = array();
 
-//    if($this->pelaajat_min != '' || $this->pelaajat_min != null || is_numeric($this->pelaajat_min)){
+        //if($this->pelaajat_min != '' || $this->pelaajat_min != null || is_numeric($this->pelaajat_min)){
         if ($this->pelaajat_min != '' && is_numeric($this->pelaajat_min) == false) {
             $validointivirheet[] = 'Pelaajien minimimäärän on oltava tyhjä tai numero.';
         }
@@ -146,7 +197,7 @@ class Peli extends BaseModel {
         // Pelaajamäärän validointi: jätettävä tyhjäksi tai syötettävä luku
         $validointivirheet[] = array();
 
-//    if($this->pelaajat_max != '' || $this->pelaajat_max != null || is_numeric($this->pelaajat_max)){
+        //if($this->pelaajat_max != '' || $this->pelaajat_max != null || is_numeric($this->pelaajat_max)){
         if ($this->pelaajat_max != '' && is_numeric($this->pelaajat_max) == false) {
             $validointivirheet[] = 'Pelaajien maksimimäärän on oltava tyhjä tai numero.';
         }

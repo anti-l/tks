@@ -43,7 +43,28 @@
 <p>
     {{peli.kuvaus}}
 </p>
+<br>
 
+<h3>Pelin arviot</h3>
+
+<table class="table table-striped table-bordered">
+    {% for arvostelu in arvostelut %}
+    <tr>
+        <td><strong>Arvostelija</strong> </td>
+        <td>{{arvostelu.arvostelija}}</td>
+    </tr>
+    <tr>
+        <td><strong>Arvio</strong> </td>
+        <td>{{arvostelu.arvio}}</td>
+    </tr>
+    <tr>
+        <td><strong>Arvostelu</strong> </td>
+        <td>{{arvostelu.arvostelu}}</td>
+    </tr>
+    <tr><td colspan="2"></td></tr>
+    {% endfor%}
+
+</table>
 
 
 {% endblock %}

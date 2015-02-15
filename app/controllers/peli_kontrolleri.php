@@ -5,7 +5,23 @@ class PeliKontrolleri extends BaseController {
     public static function index() {
         self::render_view('home.html');
     }
-
+    
+    /* Tää toteutus ei skulaa vielä.
+    // Metodi, jolla voidaan hakea pelin nimellä listaus
+    public static function search($options){
+        
+        $params = $_POST;
+        
+        if(isset($params['search'])){
+            $options['search'] = $params['search'];
+        }
+        
+        $pelit = Peli::search($options);
+        
+        self::render_view('game/index.html', array('games' => $games));
+    }
+    */
+    
     public static function game_list() {
 
         // Haetaan kaikki pelit tietokannasta
@@ -15,13 +31,25 @@ class PeliKontrolleri extends BaseController {
         self::render_view('game/index.html', array('pelit' => $pelit));
     }
 
+    public static function game_list_owner($id) {
+
+        // Haetaan yhden omistajan pelit tietokannasta
+        $pelit = Peli::all_owner($id);
+
+        // Renderöidään views/game -kansiossa sijaitseva tiedosto index.html muuttujan $pelit datalla
+        self::render_view('game/index.html', array('pelit' => $pelit));
+    }
+
     public static function game_show($id) {
 
         // Haetaan id:tä vastaava peli tietokannasta
         $peli = Peli::find($id);
+        
+        // Haetaan pelin id:tä vastaava arvostelu tietokannasta
+        $arvostelut = Arvostelu::review_list($id);
 
-        // Näytetään haetun pelin tiedot
-        self::render_view('game/pelinakyma.html', array('peli' => $peli));
+        // Näytetään haetun pelin tiedot ja arvostelut
+        self::render_view('game/pelinakyma.html', array('peli' => $peli, 'arvostelut' => $arvostelut));
     }
 
     public static function tallenna() {

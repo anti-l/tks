@@ -38,15 +38,18 @@ $app->get('/game', function() {
     PeliKontrolleri::game_list();
 });
 
+// Pelien haku
+//$app->post('/game/:options', function($options) {
+//    PeliKontrolleri::search($options);
+//});
+
 // Lisäyslomakkeen näyttäminen
 $app->get('/game/uusi', function() {
-    //self::check_logged_in();
     PeliKontrolleri::luoUusi();
 });
 
 // Uuden pelin luonti
 $app->post('/game/uusi', function() {
-    //self::check_logged_in();
     PeliKontrolleri::tallenna();
 });
 
@@ -57,20 +60,22 @@ $app->get('/game/:id', function($id) {
 
 // Yksittäisen pelin muokkaussivu
 $app->get('/game/:id/edit', function($id) {
-    //self::check_logged_in();
     PeliKontrolleri::game_edit($id);
 });
 
 // Yksittäisen pelin päivitys
 $app->post('/game/:id/edit', function($id) {
-    //self::check_logged_in();
     PeliKontrolleri::update($id);
 });
 
 // Pelin poistaminen
 $app->post('/game/:id/delete', function($id) {
-    //self::check_logged_in();
     PeliKontrolleri::destroy($id);
+});
+
+// Yhden omistajan pelit listattuna
+$app->get('/game/owner/:id', function($id) {
+    PeliKontrolleri::game_list_owner($id);
 });
 
 // Login-sivu
@@ -120,6 +125,21 @@ $app->get('/user/:id/edit', function($id) {
 // Käyttäjän editointi ja päivitys
 $app->post('/user/:id/edit', function($id) {
     KayttajaKontrolleri::user_update($id);
+});
+
+// Arvioiden esittäminen
+$app->get('/review', function() {
+    ArvosteluKontrolleri::review_all();
+});
+
+// Uuden arvion luominen
+$app->get('/review/uusi', function() {
+    ArvosteluKontrolleri::review_luo();
+});
+
+// Uuden arvion luominen
+$app->get('/review/delete', function() {
+    ArvosteluKontrolleri::review_poista();
 });
 
 

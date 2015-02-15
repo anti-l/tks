@@ -82,12 +82,25 @@ class Kayttaja extends BaseModel {
         return $row[0]['id'];
     }
 
-        public static function poista($id) {
+    public static function poista($id) {
         // Käyttäjän poistaminen
         DB::query('DELETE from Kayttaja WHERE id=' . $id);
     }
 
+    
+    public static function update($uusi) {
 
+        // Talletetaan parametrinä annetun taulukon tiedot tietokantaan, otetaan rivi talteen
+        $row = DB::query('UPDATE kayttaja SET nimi = :nimi, salasana = :salasana WHERE id = :id RETURNING id', $uusi);
+
+        // Palautetaan lisätyn pelin rivin id
+        return $row[0]['id'];
+    }
+
+    
+    
+    // VALIDAATTORIT
+    
     public function validate_nimi() {
 
         // Nimen validointi: Nimi ei saa olla tyhjä.

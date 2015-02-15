@@ -59,7 +59,7 @@
 </form>
 
 {% if user_logged_in %}
-            <form method="post" action="{{base_path}}/game/{{attribuutit.id}}/delete">
+            <form method="post" action="{{base_path}}/game/{{attribuutit.id}}/delete" class="destroy-form" data-confirm="Haluatko varmasti poistaa pelin?">
                 <button type="submit" class="btn btn-danger">Poista</button>
             </form>
 {% endif %}
