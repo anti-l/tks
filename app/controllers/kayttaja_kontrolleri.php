@@ -28,6 +28,7 @@ class KayttajaKontrolleri extends BaseController {
     }
 
     public static function list_users() {
+        self::check_logged_in();
         // Kutsutaan käyttäjä-luokan listaa-kaikki -metodia.
         $kayttajat = Kayttaja::all();
         self::render_view('user/users.html', array('kayttajat' => $kayttajat));
@@ -41,21 +42,6 @@ class KayttajaKontrolleri extends BaseController {
         // talletetaan käyttäjä-luokalta käyttäjän id:llä saadut tiedot tauluun ja näytetään ne sivulla
         $attribuutit = Kayttaja::find($id);
         self::render_view('user/user_edit.html', array('attribuutit' => $attribuutit));
-    }
-    
-    public static function user_update($id){
-        self::check_logged_in();
-        //self::redirect_to('/user', array('message' => 'Toiminto tulossa.'));
-        $params = $_POST;
-        
-        $attribuutit = array(
-            'nimi' => $params['nimi'],
-            'salasana' => $params['salasana']
-        );
-        
-        //$kayttaja = new Kayttaja($attribuutit);
-        $id = Kayttaja::update($attribuutit);
-        self::redirect_to('/user', array('message' => 'Muokkaus onnistui.'));
     }
     
     public static function user_poista($id){
@@ -74,6 +60,7 @@ class KayttajaKontrolleri extends BaseController {
     }
     
     public static function user_tallenna(){
+        self::check_logged_in();
         //Post-pyynnön muuttujat haetaan $_POST -assosiaatiolistasta
         $params = $_POST;
 
@@ -93,6 +80,30 @@ class KayttajaKontrolleri extends BaseController {
             // Käyttäjän tiedoissa oli jotain vikaa, palautetaan virheet ja attribuutit
             self::render_view('/user/user_uusi.html', array('virheet' => $virheet, 'attribuutit' => $attribuutit));
         }
+    }
+    
+    public static function user_update($id){
+        /*
+        self::check_logged_in();
+        
+        $tiedot = array(
+            'nimi' => $_POST['nimi'],
+            'salasana' => $_POST['salasana']
+        );
+        
+        $uusi_kayttaja = new Kayttaja($tiedot);
+        $virheet = $uusi_kayttaja->errors();
+        
+        if (count($virheet) == 0) {
+            // Jos attribuutit on kunnossa, päivitetään käyttäjän tiedot ja siirretään käyttäjä pääsivulle
+            $id = Kayttaja::update($tiedot);
+            self::redirect_to('/user', array('message' => 'Muokkaus onnistui.'));
+        } else {
+            // Käyttäjän tiedoissa oli jotain vikaa, palautetaan virheet ja attribuutit
+            self::render_view('/user/user_uusi.html', array('virheet' => $virheet, 'attribuutit' => $tiedot));
+        }
+        */
+        self::redirect_to('/user', array('message' => 'Toiminto tulossa.'));
     }
     
 }
