@@ -44,4 +44,12 @@ Sovellukselle luotu suunnitelma sen käyttöliittymäksi:
 * Kirjoita alustava käynnistys- / käyttöohje dokumentaatioosi.
   * *Viimeisellä sivulla [dokumentaatiossa](https://github.com/anti-l/tks/blob/master/doc/dokumentaatio.pdf?raw=true).*
 
+### Viikko 5
+
+* Käyttäjän uloskirjautuminen ja sisään kirjautumattoman käyttäjän pääsy sivuille estetty.
+* Tällä hetkellä ohjelmassa kolme tietokohdetta, jolle CRUD toimii (ainakin suurimmalta osin).
+* [Dokumentaatiota](https://github.com/anti-l/tks/blob/master/doc/dokumentaatio.pdf?raw=true) päivitetty järjestelmän yleisrakenteen ja käyttöliittymän ja järjestelmän komponenttien osalta.
+* Koodikatselmointi tehty.
+* Demoon valmistaudutaan kovasti.
+
 

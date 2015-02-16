@@ -22,18 +22,22 @@
     <tbody>
         {% for arvostelu in arvostelut %}
         <tr>
-            <!--<td><a href="{{base_path}}/game/{{peli.id}}">{{peli.nimi}}</a></td>-->
             <td>{{arvostelu.arvostelija}}</td>
+            <!--
+            <td><a href="{{base_path}}/game/{{pelit.id}}">{{arvostelu.peli}}</a></td>
+            -->
             <td>{{arvostelu.peli}}</td>
             <td>{{arvostelu.arvio}}</td>
             <td>{{arvostelu.arvostelu}}</td>
             <td><a class="btn btn-default btn-sm" href="{{base_path}}/review/{{arvostelu.id}}/show">Näytä</a></td>
         </tr>
         {% endfor %}
+        {% if user_logged_in %}
         <tr>
             <td colspan="4">&nbsp;</td>
             <td align="right"><a class="btn btn-success btn-sm" href="{{base_path}}/review/uusi">Luo uusi</a></td>
         </tr>
+        {% endif %}
     </tbody>
 </table>
 

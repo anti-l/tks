@@ -21,7 +21,7 @@ class ArvosteluKontrolleri extends BaseController {
 
     public static function review_show($id) {
         // Kutsutaan arvostelu-luokan listaa-yksi -metodia.
-        $arvostelu = Arvostelu::review_list($id);
+        $arvostelu = Arvostelu::review_find($id);
         $peli = Peli::find($id);
         $kayttaja = Kayttaja::find($id);
 //        $peli = Peli::find($arvostelu->peli);

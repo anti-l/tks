@@ -15,8 +15,7 @@ class Arvostelu extends BaseModel {
         $arvostelut = array();
 
         // Haetaan tietokannasta rivit
-        $rows = DB::query('SELECT * FROM arvostelu');
-        //$rows = DB::query('SELECT arvostelu.id, kayttaja.nimi, peli.nimi, arvostelu, arvio FROM arvostelu, kayttaja, peli WHERE arvostelu.arvostelija=kayttaja.id AND arvostelu.peli=peli.id');
+        $rows = DB::query('SELECT arvostelu.id AS id, kayttaja.nimi AS arvostelija, peli.nimi AS peli, arvostelu, arvio FROM arvostelu, kayttaja, peli WHERE arvostelu.arvostelija=kayttaja.id AND arvostelu.peli=peli.id');
 
         // Käydään rivit läpi
         foreach ($rows as $row) {
@@ -37,7 +36,7 @@ class Arvostelu extends BaseModel {
         $arvostelut = array();
 
         // Haetaan tietokannasta rivit
-        $rows = DB::query('SELECT * FROM arvostelu WHERE peli=' . $peli);
+        $rows = DB::query('SELECT arvostelu.id AS id, kayttaja.nimi AS arvostelija, peli.nimi AS peli, arvostelu, arvio FROM arvostelu, kayttaja, peli WHERE arvostelu.arvostelija=kayttaja.id AND arvostelu.peli=peli.id AND peli=' . $peli);
 
         // Käydään rivit läpi
         foreach ($rows as $row) {
@@ -55,6 +54,7 @@ class Arvostelu extends BaseModel {
 
     public static function review_find($arvostelu_id) {
         $rows = DB::query('SELECT * FROM arvostelu WHERE id= :arvostelu_id LIMIT 1', array('arvostelu_id' => $arvostelu_id));
+//        $rows = DB::query('SELECT arvostelu.id AS id, kayttaja.nimi AS arvostelija, peli.nimi AS peli, arvostelu, arvio FROM arvostelu, kayttaja, peli WHERE arvostelu.arvostelija=kayttaja.id AND arvostelu.peli=peli.id AND id= :arvostelu_id LIMIT 1', array('arvostelu_id' => $arvostelu_id));
 
         if (count($rows) > 0) {
             $row = $rows[0];
@@ -98,7 +98,7 @@ class Arvostelu extends BaseModel {
         $arvostelut = array();
 
         // Haetaan tietokannasta rivit
-        $rows = DB::query('SELECT * FROM arvostelu WHERE arvostelija=' . $id . ' ORDER BY peli');
+        $rows = DB::query('SELECT arvostelu.id AS id, kayttaja.nimi AS arvostelija, peli.nimi AS peli, arvostelu, arvio FROM arvostelu, kayttaja, peli WHERE arvostelu.arvostelija=kayttaja.id AND arvostelu.peli=peli.id AND arvostelija=' . $id . ' ORDER BY peli');
 
         // Käydään rivit läpi
         foreach ($rows as $row) {
@@ -113,8 +113,5 @@ class Arvostelu extends BaseModel {
 
         return $arvostelut;
     }
-
-    
-    
 
 }
