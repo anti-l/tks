@@ -33,6 +33,9 @@ $app->get('/', function() {
     PeliKontrolleri::index();
 });
 
+
+// PELIT
+
 // Pelien listaussivu
 $app->get('/game', function() {
     PeliKontrolleri::game_list();
@@ -78,6 +81,9 @@ $app->get('/game/owner/:id', function($id) {
     PeliKontrolleri::game_list_owner($id);
 });
 
+
+// KIRJAUTUMINEN
+
 // Login-sivu
 $app->get('/login', function() {
     KayttajaKontrolleri::login();
@@ -96,6 +102,9 @@ $app->get('/logout', function() {
 $app->post('/logout', function() {
     KayttajaKontrolleri::logout();
 });
+
+
+// KÄYTTÄJÄT
 
 // Käyttäjien listaaminen
 $app->get('/user', function() {
@@ -127,19 +136,42 @@ $app->post('/user/:id/edit', function($id) {
     KayttajaKontrolleri::user_update($id);
 });
 
+
+// ARVIOT
+
 // Arvioiden esittäminen
 $app->get('/review', function() {
     ArvosteluKontrolleri::review_all();
 });
 
-// Uuden arvion luominen
-$app->get('/review/uusi', function() {
-    ArvosteluKontrolleri::review_luo();
+// Yhden arvion näyttäminen
+$app->get('/review/:id/show', function($id) {
+    ArvosteluKontrolleri::review_show($id);
+});
+
+// Arvion editointi
+$app->get('/review/:id/edit', function($id) {
+    ArvosteluKontrolleri::review_edit($id);
 });
 
 // Uuden arvion luominen
-$app->get('/review/delete', function() {
-    ArvosteluKontrolleri::review_poista();
+$app->get('/review/uusi', function() {
+    ArvosteluKontrolleri::review_uusi();
+});
+
+// Uuden arvion luominen
+$app->post('/review/uusi', function() {
+    ArvosteluKontrolleri::review_luo();
+});
+
+// Arvion poistaminen
+$app->get('/review/:id/delete', function($id) {
+    ArvosteluKontrolleri::review_poista($id);
+});
+
+// Yhden arvostelijan arviot listattuna
+$app->get('/review/reviewer/:id', function($id) {
+    ArvosteluKontrolleri::review_list_reviewer($id);
 });
 
 

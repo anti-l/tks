@@ -29,6 +29,24 @@ INSERT INTO Statistiikka (peli_id, kayttaja_id, stats) VALUES ('4', '1', 'Pitkä
 INSERT INTO Arvostelu (arvostelija, peli, arvostelu, arvio) VALUES ('1', '1', 'Hyvä yhteistyötä vaativa lautapeli. Lisäosilla hankala. Nopea omaksua!', '5');
 INSERT INTO Arvostelu (arvostelija, peli, arvostelu, arvio) VALUES ('2', '2', 'Monipuolinen harrastajan peli, ei aloittelijoille.', '4');
 INSERT INTO Arvostelu (arvostelija, peli, arvostelu, arvio) VALUES ('1', '3', 'Eeppinen monen pelaajan avaruusstrategiapeli, vaatii paljon aikaa.', '5');
+INSERT INTO Arvostelu (arvostelija, peli, arvostelu, arvio) VALUES ('4', '7', 'Huono peli, hävisin.', '1');
+INSERT INTO Arvostelu (arvostelija, peli, arvostelu, arvio) VALUES ('5', '5', 'Kiva, yksinkertainen ja värikäs peli.', '4');
+INSERT INTO Arvostelu (arvostelija, peli, arvostelu, arvio) VALUES ('2', '9', 'Monipuolinen europeli. Tätä lisää!', '5');
+INSERT INTO Arvostelu (arvostelija, peli, arvostelu, arvio) VALUES ('3', '3', 'Parasta avaruusstrategiaa ikinä. Politiikkakortteja ehkä vähän liikaa, ensi kerralla katsotaan pakka läpi ja valitaan mukaan vain järkevimmät.', '5');
+INSERT INTO Arvostelu (arvostelija, peli, arvostelu, arvio) VALUES ('3', '4', 'Suomessakin osataan tehdä laatua. Vähän turhan paljon pieniä puunappuloita tosin, eivät pysy laudalla.', '4');
+INSERT INTO Arvostelu (arvostelija, peli, arvostelu, arvio) VALUES ('5', '8', 'Simppeli idea ymmärtää, kenties vaikea pelata hyvin? Parhaimmillaan 3+ pelaajalla.', '4');
+INSERT INTO Arvostelu (arvostelija, peli, arvostelu, arvio) VALUES ('1', '6', 'Jenkkifutista ja warhammeria? Liian paljon nopanheittoja. Illegal procedure ärsyttää.', '2');
+INSERT INTO Arvostelu (arvostelija, peli, arvostelu, arvio) VALUES ('4', '1', 'Tämä peli paranee, kun mukaan otetaan muutama lisäosa. Peruspeli liian helppo. Plussaa hyvästä tunnelmasta.', '4');
+INSERT INTO Arvostelu (arvostelija, peli, arvostelu, arvio) VALUES ('2', '3', 'Hyökkää naapurisi kimppuun, toinen naapuri hyökkää sinun kimppuusi. Rauhassa elänyt sivilisaatio vahvistuu, kun muut sotivat.', '3');
+INSERT INTO Arvostelu (arvostelija, peli, arvostelu, arvio) VALUES ('3', '5', 'Junapeli, josta junafanaatikot tykkäävät. Märklin-korteilla junafaneilta sulaa naamat. Sveitsi-lauta parasta pienille pelaajamäärille, eurooppa isommille.', '4');
+INSERT INTO Arvostelu (arvostelija, peli, arvostelu, arvio) VALUES ('5', '2', 'Saksalainen maanviljely- ja suvunkasvatuspeli. Hankalahko ymmärtää, mutta peliin sisään päästyä loistava peli.', '4');
+INSERT INTO Arvostelu (arvostelija, peli, arvostelu, arvio) VALUES ('4', '10', 'Co-op zombieapocalypse-peli. Ekassa pelissä minut heitettiin ulos kommuunista, kun ruoka loppui, ja jouduin lopettamaan pelini hylätyllä bensa-asemalla, jonne zombie-lauma hyökkäsi. Lohduttaa sekin, että muut hävisivät.', '4');
+INSERT INTO Arvostelu (arvostelija, peli, arvostelu, arvio) VALUES ('2', '7', 'Kahden pelaajan kylmää sotaa simuloiva peli. Suurvallat kurmottaa toisiaan, jokainen kierros tuntuu sietämättömältä, kun pitää tehdä valintoja jotka satuttavat itseään. Silti loistava peli. Katso myös saman valmistajan Labyrinth!', '5');
+INSERT INTO Arvostelu (arvostelija, peli, arvostelu, arvio) VALUES ('1', '7', 'Liikaa kortteja, liikaa valintoja. Ei nopeaan pelaamiseen.', '1');
+INSERT INTO Arvostelu (arvostelija, peli, arvostelu, arvio) VALUES ('1', '8', 'Lontoon markkinakojujen tycoon. Jotain samaa kuin Ticket to Ridessa.', '4');
+INSERT INTO Arvostelu (arvostelija, peli, arvostelu, arvio) VALUES ('3', '1', 'Taas se Cthulhu nousi merestä ja maailma tuhoutui.', '3');
+INSERT INTO Arvostelu (arvostelija, peli, arvostelu, arvio) VALUES ('2', '6', 'Blood Bowl - kova 80-luvulla, kova edelleen.', '5');
+INSERT INTO Arvostelu (arvostelija, peli, arvostelu, arvio) VALUES ('5', '10', 'Oma voittotavoite vaikea saavuttaa. Niin se on toisaalta muillakin.', '3');
 
 INSERT INTO Peli_Genre (peli_id, genre_id) VALUES ('1', '1');
 INSERT INTO Peli_Genre (peli_id, genre_id) VALUES ('1', '3');

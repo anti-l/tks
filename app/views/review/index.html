@@ -15,6 +15,7 @@
             <th>Peli</th>
             <th>Arvio</th>
             <th>Arvostelu</th>
+            <th width="90"></th>
         </tr>
     </thead>
 
@@ -26,10 +27,11 @@
             <td>{{arvostelu.peli}}</td>
             <td>{{arvostelu.arvio}}</td>
             <td>{{arvostelu.arvostelu}}</td>
+            <td><a class="btn btn-default btn-sm" href="{{base_path}}/review/{{arvostelu.id}}/show">Näytä</a></td>
         </tr>
         {% endfor %}
         <tr>
-            <td colspan="3">&nbsp;</td>
+            <td colspan="4">&nbsp;</td>
             <td align="right"><a class="btn btn-success btn-sm" href="{{base_path}}/review/uusi">Luo uusi</a></td>
         </tr>
     </tbody>

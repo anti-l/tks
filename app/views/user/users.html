@@ -33,7 +33,7 @@
         <tr>
             <td>{{kayttaja.nimi}}</td>
             <td><a class="btn btn-primary btn-sm" href="{{base_path}}/game/owner/{{kayttaja.id}}">Pelit</a></td>
-            <td><a class="btn btn-default btn-sm" href="">Arvostelut </a></td>
+            <td><a class="btn btn-default btn-sm" href="{{base_path}}/review/reviewer/{{kayttaja.id}}">Arvostelut</a></td>
             <td><a class="btn btn-default btn-sm" href="{{base_path}}/user/{{kayttaja.id}}/edit">Muokkaa</a></td>
         </tr>
         {% endfor %}

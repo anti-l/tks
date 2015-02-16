@@ -83,4 +83,38 @@ class Arvostelu extends BaseModel {
         DB::query('DELETE FROM arvostelu WHERE id=' . $id);
     }
 
+    public static function review_uusi() {
+        // Arvostelun poistaminen
+        DB::query('DELETE FROM arvostelu WHERE id=' . $id);
+    }
+    
+    public static function review_show() {
+        // Arvostelun poistaminen
+        DB::query('DELETE FROM arvostelu WHERE id=' . $id);
+    }
+    
+    // Metodi, joka hakee arvostelut tietokannasta ja palauttaa ne olioina
+    public static function all_reviewer($id) {
+        $arvostelut = array();
+
+        // Haetaan tietokannasta rivit
+        $rows = DB::query('SELECT * FROM arvostelu WHERE arvostelija=' . $id . ' ORDER BY peli');
+
+        // Käydään rivit läpi
+        foreach ($rows as $row) {
+            $arvostelut[] = new Arvostelu(array(
+                'id' => $row['id'],
+                'arvostelija' => $row['arvostelija'],
+                'peli' => $row['peli'],
+                'arvostelu' => $row['arvostelu'],
+                'arvio' => $row ['arvio']
+            ));
+        }
+
+        return $arvostelut;
+    }
+
+    
+    
+
 }
