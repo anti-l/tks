@@ -83,15 +83,17 @@ class PeliKontrolleri extends BaseController {
     }
 
     public static function luoUusi() {
-        self::render_view('game/uusi.html');
+        $omistajat = Kayttaja::all();
+        self::render_view('game/uusi.html', array('omistajat' => $omistajat));
     }
 
     public static function game_edit($id) {
         // Haetaan id:tä vastaava peli tietokannasta
         $peli = Peli::find($id);
+        $omistajat = Kayttaja::all();
 
         // Näytetään haetun pelin tiedot
-        self::render_view('game/edit.html', array('attribuutit' => $peli));
+        self::render_view('game/edit.html', array('attribuutit' => $peli, 'omistajat' => $omistajat));
     }
 
     // Pelin päivittäminen järjestelmässä

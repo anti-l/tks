@@ -22,9 +22,25 @@
         <input name="nimi" class="form-control" type="text" value="{{attribuutit.nimi}}">
     </div>
 
+    <!--
     <div class="form-group">
         <label>Omistaja (numerona)</label>
-        <input name="omistaja" class="form-control" type="text" value="{{attribuutit.omistaja}}"
+        <input name="omistaja" class="form-control" type="text" value="{{attribuutit.omistaja}}">
+    </div>
+    -->
+
+    <div class="form-group">
+        <label>Omistaja</label>
+        <select name="omistaja" class="form-control" size="1">
+            {% for omistaja in omistajat %}
+            <option value="{{omistaja.id}}">{{omistaja.nimi}}</option>
+            {% endfor %}
+        </select>
+    </div>
+
+    <div class="form-group">
+        <label>Omistaja</label>
+        <input name="omistaja" class="form-control" type="text" value="{{attribuutit.omistaja}}">
     </div>
 
     <div class="form-group">
@@ -59,9 +75,9 @@
 </form>
 
 {% if user_logged_in %}
-            <form method="post" action="{{base_path}}/game/{{attribuutit.id}}/delete" class="destroy-form" data-confirm="Haluatko varmasti poistaa pelin?">
-                <button type="submit" class="btn btn-danger">Poista</button>
-            </form>
+<form method="post" action="{{base_path}}/game/{{attribuutit.id}}/delete" class="destroy-form" data-confirm="Haluatko varmasti poistaa pelin?">
+    <button type="submit" class="btn btn-danger">Poista</button>
+</form>
 {% endif %}
 
 {% endblock %}
