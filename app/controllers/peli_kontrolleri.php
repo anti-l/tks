@@ -5,23 +5,23 @@ class PeliKontrolleri extends BaseController {
     public static function index() {
         self::render_view('home.html');
     }
-    
+
     /* Tää toteutus ei skulaa vielä.
-    // Metodi, jolla voidaan hakea pelin nimellä listaus
-    public static function search($options){
-        
-        $params = $_POST;
-        
-        if(isset($params['search'])){
-            $options['search'] = $params['search'];
-        }
-        
-        $pelit = Peli::search($options);
-        
-        self::render_view('game/index.html', array('games' => $games));
-    }
-    */
-    
+      // Metodi, jolla voidaan hakea pelin nimellä listaus
+      public static function search($options){
+
+      $params = $_POST;
+
+      if(isset($params['search'])){
+      $options['search'] = $params['search'];
+      }
+
+      $pelit = Peli::search($options);
+
+      self::render_view('game/index.html', array('games' => $games));
+      }
+     */
+
     public static function game_list() {
 
         // Haetaan kaikki pelit tietokannasta
@@ -44,7 +44,7 @@ class PeliKontrolleri extends BaseController {
 
         // Haetaan id:tä vastaava peli tietokannasta
         $peli = Peli::find($id);
-        
+
         // Haetaan pelin id:tä vastaava arvostelu tietokannasta
         $arvostelut = Arvostelu::review_list($id);
 
@@ -89,16 +89,16 @@ class PeliKontrolleri extends BaseController {
     public static function luoUusi() {
         $omistajat = Kayttaja::all();
         /*
-        $attributes = array(
-                            'nimi' => 0,
-                            'omistaja' => 1,
-                            'julkaisija' => 0,
-                            'julkaisuvuosi' => 0,
-                            'tyyppi' => 0,
-                            'pelaajat_min' => 0,
-                            'pelaajat_max' => 0);
+          $attributes = array(
+          'nimi' => 0,
+          'omistaja' => 1,
+          'julkaisija' => 0,
+          'julkaisuvuosi' => 0,
+          'tyyppi' => 0,
+          'pelaajat_min' => 0,
+          'pelaajat_max' => 0);
          * 
-        self::render_view('game/uusi.html', array('attribuutit' => $attributes, 'omistajat' => $omistajat));
+          self::render_view('game/uusi.html', array('attribuutit' => $attributes, 'omistajat' => $omistajat));
          */
         self::render_view('game/uusi.html', array('omistajat' => $omistajat));
     }
@@ -115,6 +115,7 @@ class PeliKontrolleri extends BaseController {
     // Pelin päivittäminen järjestelmässä
     public static function update($id) {
         // otetaan updatesta attribuutit talteen
+        $omistajat = Kayttaja::all();
         $params = $_POST;
 
         // talletetaan attribuutit omaan muuttujataulukkoon oikein
@@ -133,15 +134,17 @@ class PeliKontrolleri extends BaseController {
         // Luodaan uusi peli annetuilla attribuuteilla ja lasketaan virheet
         $peli = new Peli($attribuutit);
         $virheet = $peli->errors();
+        
+        if (count($virheet) > 0) {
 
-//        if (count($virheet > 0)) {
-//            // epäonnistui, takaisin editointiin, kirjoitetaan virheet sivulle
-//            self::render_view('/game/edit.html', array('virheet' => $virheet, 'attribuutit' => $attribuutit));
-//        } else {
+            // epäonnistui, takaisin editointiin, kirjoitetaan virheet sivulle
+            self::render_view('/game/edit.html', array('virheet' => $virheet, 'attribuutit' => $attribuutit, 'omistajat' => $omistajat));
+        } else {
             // onnistui, takaisin sivulle onnistuneen tekstin kera
-            $id = Peli::update($attribuutit);
+            
+            Peli::update($attribuutit);
             self::redirect_to('/game/' . $id, array('message' => 'Muokkaus onnistui.'));
-//        }
+        }
     }
 
     // Pelin poistaminen järjestelmästä
