@@ -44,12 +44,15 @@ class PeliKontrolleri extends BaseController {
 
         // Haetaan id:tä vastaava peli tietokannasta
         $peli = Peli::find($id);
+        
+        // Haetaan käyttäjät tietokannasta omistajatietoa varten
+        $omistaja = Kayttaja::find($peli->omistaja);
 
         // Haetaan pelin id:tä vastaava arvostelu tietokannasta
         $arvostelut = Arvostelu::review_list($id);
 
         // Näytetään haetun pelin tiedot ja arvostelut
-        self::render_view('game/pelinakyma.html', array('peli' => $peli, 'arvostelut' => $arvostelut));
+        self::render_view('game/pelinakyma.html', array('peli' => $peli, 'arvostelut' => $arvostelut, 'omistaja' => $omistaja));
     }
 
     public static function tallenna() {
@@ -57,9 +60,6 @@ class PeliKontrolleri extends BaseController {
         //Post-pyynnön muuttujat haetaan $_POST -assosiaatiolistasta
         $params = $_POST;
         $omistajat = Kayttaja::all();
-
-//        var_dump($_POST);
-//        exit();
 
         $attribuutit = array(
             'nimi' => $params['nimi'],

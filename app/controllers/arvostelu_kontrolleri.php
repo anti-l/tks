@@ -22,10 +22,10 @@ class ArvosteluKontrolleri extends BaseController {
     public static function review_show($id) {
         // Kutsutaan arvostelu-luokan listaa-yksi -metodia.
         $arvostelu = Arvostelu::review_find($id);
-        $peli = Peli::find($id);
-        $kayttaja = Kayttaja::find($id);
-//        $peli = Peli::find($arvostelu->peli);
-//        $kayttaja = Kayttaja::find($arvostelu->arvostelija);
+//        $peli = Peli::find($id);
+//        $kayttaja = Kayttaja::find($id);
+        $peli = Peli::find($arvostelu->peli);
+        $kayttaja = Kayttaja::find($arvostelu->arvostelija);
         self::render_view('review/show.html', array('arvostelu' => $arvostelu, 'kayttaja' => $kayttaja, 'peli' => $peli));
     }
 
@@ -34,21 +34,35 @@ class ArvosteluKontrolleri extends BaseController {
         self::check_logged_in();
         
         // talletetaan käyttäjä-luokalta käyttäjän id:llä saadut tiedot tauluun ja näytetään ne sivulla
-        $attribuutit = Arvostelu::find($id);
-        self::render_view('review/review_edit.html', array('attribuutit' => $attribuutit));
+        $attribuutit = Arvostelu::review_find($id);
+        $peli = Peli::find($attribuutit->peli);
+        self::render_view('/review/edit.html', array('attribuutit' => $attribuutit, 'peli' => $peli));
     }
     
     public static function review_update($id){
         self::check_logged_in();
         self::redirect_to('/review', array('message' => 'Toiminto tulossa.'));
+        /*
+        $params = $_POST;
+        
+        $attribuutit = array(
+            'id' => $params['id'],
+            'arvostelija' => $params['arvostelija'],
+            'peli' => $params['peli'],
+            'arvio' => $params['arvio'],
+            'arvostelu' => $params['arvostelu']
+        );
+        
+        Arvostelu::review_update($attribuutit);
+        self::render_view('/review/index.html', array('message' => 'Muokkaus onnistui.'));
+        */
     }
     
     public static function review_poista($id){
         // Ennen arvostelun poistamista tarkistetaan ollaanko kirjauduttu sisään
         self::check_logged_in();
         // Poistetaan arvostelun id:llä oleva arvostelu taulusta, haetaan kaikki arvostelut ja esitetään ne pääsivulla
-        Arvostelu::poista($id);
-        $arvostelut = Arvostelu::all();
+        Arvostelu::review_poista($id);
         self::redirect_to('/review', array('message' => 'Arvostelu poistettu.'));
     }
     
@@ -69,7 +83,7 @@ class ArvosteluKontrolleri extends BaseController {
 
         $arvostelu = new Arvostelu($attribuutit);
         $id = Arvostelu::review_luo($attribuutit);
-        self::redirect_to('/review/', array('message' => 'Arvostelu lisätty.'));
+        self::redirect_to('/review', array('message' => 'Arvostelu lisätty.'));
     }
     
     public static function review_uusi(){

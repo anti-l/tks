@@ -154,6 +154,11 @@ $app->get('/review/:id/edit', function($id) {
     ArvosteluKontrolleri::review_edit($id);
 });
 
+// Arvion editointi
+$app->post('/review/:id/edit', function($id) {
+    ArvosteluKontrolleri::review_update($id);
+});
+
 // Uuden arvion luominen
 $app->get('/review/uusi', function() {
     ArvosteluKontrolleri::review_uusi();
@@ -165,7 +170,7 @@ $app->post('/review/uusi', function() {
 });
 
 // Arvion poistaminen
-$app->get('/review/:id/delete', function($id) {
+$app->post('/review/:id/delete', function($id) {
     ArvosteluKontrolleri::review_poista($id);
 });
 

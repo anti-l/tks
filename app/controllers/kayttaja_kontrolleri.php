@@ -83,9 +83,9 @@ class KayttajaKontrolleri extends BaseController {
     }
     
     public static function user_update($id){
-        /*
         self::check_logged_in();
         
+        /*
         $tiedot = array(
             'nimi' => $_POST['nimi'],
             'salasana' => $_POST['salasana']
@@ -96,7 +96,8 @@ class KayttajaKontrolleri extends BaseController {
         
         if (count($virheet) == 0) {
             // Jos attribuutit on kunnossa, päivitetään käyttäjän tiedot ja siirretään käyttäjä pääsivulle
-            $id = Kayttaja::update($tiedot);
+            //$id = Kayttaja::update($tiedot);
+            Kayttaja::update($tiedot);
             self::redirect_to('/user', array('message' => 'Muokkaus onnistui.'));
         } else {
             // Käyttäjän tiedoissa oli jotain vikaa, palautetaan virheet ja attribuutit

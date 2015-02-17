@@ -91,7 +91,8 @@ class Kayttaja extends BaseModel {
     public static function update($uusi) {
 
         // Talletetaan parametrinä annetun taulukon tiedot tietokantaan, otetaan rivi talteen
-        $row = DB::query('UPDATE kayttaja SET nimi = :nimi, salasana = :salasana WHERE id = :id RETURNING id', $uusi);
+        $row = DB::query('UPDATE kayttaja SET nimi=:nimi, salasana=:salasana WHERE id=:id RETURNING id', $uusi);
+        //$row = DB::query('UPDATE kayttaja SET nimi=' . :nimi . ', salasana=' . :salasana . ' WHERE id=' . :id . ' RETURNING id', $uusi);
 
         // Palautetaan lisätyn pelin rivin id
         return $row[0]['id'];

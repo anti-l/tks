@@ -54,7 +54,9 @@ class Arvostelu extends BaseModel {
 
     public static function review_find($arvostelu_id) {
         $rows = DB::query('SELECT * FROM arvostelu WHERE id= :arvostelu_id LIMIT 1', array('arvostelu_id' => $arvostelu_id));
-//        $rows = DB::query('SELECT arvostelu.id AS id, kayttaja.nimi AS arvostelija, peli.nimi AS peli, arvostelu, arvio FROM arvostelu, kayttaja, peli WHERE arvostelu.arvostelija=kayttaja.id AND arvostelu.peli=peli.id AND id= :arvostelu_id LIMIT 1', array('arvostelu_id' => $arvostelu_id));
+        //$rows = DB::query('SELECT arvostelu.id AS id, kayttaja.nimi AS arvostelija, peli.nimi AS peli, arvostelu, arvio FROM arvostelu, kayttaja, peli WHERE arvostelu.arvostelija=kayttaja.id AND arvostelu.peli=peli.id AND id= :arvostelu_id LIMIT 1', array('arvostelu_id' => $arvostelu_id));
+        //$rows = DB::query('SELECT * FROM arvostelu LEFT JOIN peli ON arvostelu.peli=peli.id RIGHT JOIN kayttaja ON kayttaja.id=arvostelu.arvostelija');
+
 
         if (count($rows) > 0) {
             $row = $rows[0];
@@ -83,11 +85,6 @@ class Arvostelu extends BaseModel {
         DB::query('DELETE FROM arvostelu WHERE id=' . $id);
     }
 
-    public static function review_uusi() {
-        // Arvostelun poistaminen
-        DB::query('DELETE FROM arvostelu WHERE id=' . $id);
-    }
-    
     public static function review_show() {
         // Arvostelun poistaminen
         DB::query('DELETE FROM arvostelu WHERE id=' . $id);
@@ -113,5 +110,58 @@ class Arvostelu extends BaseModel {
 
         return $arvostelut;
     }
+    
+    // Metodi arvostelujen päivittämiseen
+    public static function review_update($attribuutit){
+
+        // Talletetaan parametrinä annetun taulukon tiedot tietokantaan, otetaan rivi talteen
+        $row = DB::query('UPDATE arvostelu SET arvostelija = :arvostelija, peli = :peli, arvostelu = :arvostelu, arvio = :arvio WHERE id = :id RETURNING id', $attribuutit);
+
+        // Palautetaan lisätyn pelin rivin id
+        return $row[0]['id'];
+    }
 
 }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
