@@ -11,10 +11,10 @@
     <thead>
         <tr>
             <th>Nimi</th>
-            <th>Julkaisuvuosi</th>
             <th>Julkaisija</th>
-            <th>Pelaajia Min</th>
-            <th>Pelaajia Max</th>
+            <th>Vuosi</th>
+            <th>Pelaajia</th>
+            <th>Genre</th>
             <th>Lisäyspäivä</th>
             {% block kirjautuneena_voi_muokata1 %}
             {% if user_logged_in %}
@@ -28,10 +28,10 @@
         {% for peli in pelit %}
         <tr>
             <td><a href="{{base_path}}/game/{{peli.id}}">{{peli.nimi}}</a></td>
-            <td>{{peli.julkaisuvuosi}}</td>
             <td>{{peli.julkaisija}}</td>
-            <td>{{peli.pelaajat_min}}</td>
-            <td>{{peli.pelaajat_max}}</td>
+            <td>{{peli.julkaisuvuosi}}</td>
+            <td>{{peli.pelaajat_min}} - {{peli.pelaajat_max}}</td>
+            <td></td>
             <td>{{peli.lisayspaiva}}</td>
             {% block kirjautuneena_voi_muokata2 %}
             {% if user_logged_in %}

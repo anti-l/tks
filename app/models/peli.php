@@ -10,8 +10,7 @@ class Peli extends BaseModel {
         parent::__construct($attributes);
 
         //$this->validators = array('validate_nimi', 'validate_omistaja', 'validate_julkaisuvuosi', 'validate_pelaajat_min', 'validate_pelaajat_max');
-        //$this->validators = array('validate_nimi', 'validate_omistaja');
-        $this->validators = array('validate_nimi');
+        $this->validators = array('validate_nimi', 'validate_julkaisuvuosi', 'validate_pelaajat_min', 'validate_pelaajat_max');
     }
 
     // Metodi, joka hakee pelit tietokannasta ja palauttaa ne olioina
@@ -148,7 +147,7 @@ class Peli extends BaseModel {
 
     public function validate_nimi() {
 
-        // Nimen validointi: Nimi ei saa olla tyhjä, nimessä pitää olla vähintään 3 merkkiä.
+        // Nimen validointi: Nimi ei saa olla tyhjä.
         $validointivirheet = array();
 
         if ($this->nimi == '' || $this->nimi == null) {
@@ -160,10 +159,10 @@ class Peli extends BaseModel {
     public function validate_omistaja() {
 
         // Omistajan validointi: Pakko syöttää numero (myöhemmin drop-down box)
-        $validointivirheet[] = array();
+        $validointivirheet = array();
 
-        if (is_numeric($this->omistaja) == false) {
-            $validointivirheet[] = 'Omistajan on oltava (käyttäjän) numero (1-2).';
+        if (!is_numeric($this->omistaja) == false) {
+            $validointivirheet = 'Omistajan on oltava (käyttäjän) id (numero).';
         }
         return $validointivirheet;
     }
@@ -171,10 +170,9 @@ class Peli extends BaseModel {
     public function validate_julkaisuvuosi() {
 
         // Julkaisuvuoden validointi: oltava tyhjä tai luku
-        $validointivirheet[] = array();
+        $validointivirheet = array();
 
-        //if($this->julkaisuvuosi != '' || $this->julkaisuvuosi != null || is_numeric($this->julkaisuvuosi)){
-        if (is_numeric($this->julkaisuvuosi)) {
+        if (!is_numeric($this->julkaisuvuosi)) {
             $validointivirheet[] = 'Julkaisuvuosi on oltava numero.';
         }
         return $validointivirheet;
@@ -183,11 +181,10 @@ class Peli extends BaseModel {
     public function validate_pelaajat_min() {
 
         // Pelaajamäärän validointi: jätettävä tyhjäksi tai syötettävä luku
-        $validointivirheet[] = array();
+        $validointivirheet = array();
 
-        //if($this->pelaajat_min != '' || $this->pelaajat_min != null || is_numeric($this->pelaajat_min)){
-        if ($this->pelaajat_min != '' && is_numeric($this->pelaajat_min) == false) {
-            $validointivirheet[] = 'Pelaajien minimimäärän on oltava tyhjä tai numero.';
+        if (is_numeric($this->pelaajat_min) == false) {
+            $validointivirheet[] = 'Pelaajien minimimäärän on oltava numero.';
         }
         return $validointivirheet;
     }
@@ -195,11 +192,10 @@ class Peli extends BaseModel {
     public function validate_pelaajat_max() {
 
         // Pelaajamäärän validointi: jätettävä tyhjäksi tai syötettävä luku
-        $validointivirheet[] = array();
+        $validointivirheet = array();
 
-        //if($this->pelaajat_max != '' || $this->pelaajat_max != null || is_numeric($this->pelaajat_max)){
-        if ($this->pelaajat_max != '' && is_numeric($this->pelaajat_max) == false) {
-            $validointivirheet[] = 'Pelaajien maksimimäärän on oltava tyhjä tai numero.';
+        if (is_numeric($this->pelaajat_max) == false) {
+            $validointivirheet[] = 'Pelaajien maksimimäärän on oltava numero.';
         }
         return $validointivirheet;
     }

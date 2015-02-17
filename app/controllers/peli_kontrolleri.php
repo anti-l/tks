@@ -56,6 +56,10 @@ class PeliKontrolleri extends BaseController {
 
         //Post-pyynnön muuttujat haetaan $_POST -assosiaatiolistasta
         $params = $_POST;
+        $omistajat = Kayttaja::all();
+
+//        var_dump($_POST);
+//        exit();
 
         $attribuutit = array(
             'nimi' => $params['nimi'],
@@ -78,12 +82,24 @@ class PeliKontrolleri extends BaseController {
             self::redirect_to('/game/' . $id, array('message' => 'Peli lisätty.'));
         } else {
             // Pelissä oli jotain vikaa, palautetaan virheet ja attribuutit
-            self::render_view('game/uusi.html', array('virheet' => $virheet, 'attribuutit' => $attribuutit));
+            self::render_view('game/uusi.html', array('virheet' => $virheet, 'attribuutit' => $attribuutit, 'omistajat' => $omistajat));
         }
     }
 
     public static function luoUusi() {
         $omistajat = Kayttaja::all();
+        /*
+        $attributes = array(
+                            'nimi' => 0,
+                            'omistaja' => 1,
+                            'julkaisija' => 0,
+                            'julkaisuvuosi' => 0,
+                            'tyyppi' => 0,
+                            'pelaajat_min' => 0,
+                            'pelaajat_max' => 0);
+         * 
+        self::render_view('game/uusi.html', array('attribuutit' => $attributes, 'omistajat' => $omistajat));
+         */
         self::render_view('game/uusi.html', array('omistajat' => $omistajat));
     }
 
