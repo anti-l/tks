@@ -9,7 +9,6 @@ class Peli extends BaseModel {
     public function __construct($attributes) {
         parent::__construct($attributes);
 
-        //$this->validators = array('validate_nimi', 'validate_omistaja', 'validate_julkaisuvuosi', 'validate_pelaajat_min', 'validate_pelaajat_max');
         $this->validators = array('validate_nimi', 'validate_julkaisuvuosi', 'validate_pelaajat_min', 'validate_pelaajat_max');
     }
 
@@ -28,7 +27,6 @@ class Peli extends BaseModel {
                 'nimi' => $row['nimi'],
                 'julkaisuvuosi' => $row['julkaisuvuosi'],
                 'julkaisija' => $row['julkaisija'],
-                //'genre' => $row['genre'],
                 'tyyppi' => $row['tyyppi'],
                 'pelaajat_min' => $row['pelaajat_min'],
                 'pelaajat_max' => $row['pelaajat_max'],
@@ -78,7 +76,6 @@ class Peli extends BaseModel {
                 'nimi' => $row['nimi'],
                 'julkaisuvuosi' => $row['julkaisuvuosi'],
                 'julkaisija' => $row['julkaisija'],
-                //'genre' => $row['genre'],
                 'tyyppi' => $row['tyyppi'],
                 'pelaajat_min' => $row['pelaajat_min'],
                 'pelaajat_max' => $row['pelaajat_max'],
@@ -90,6 +87,29 @@ class Peli extends BaseModel {
         }
         return null;
     }
+
+    public static function get_all_games_one_genre($id){
+        $pelit = array();
+        $rows = DB::query('SELECT * FROM peli, peli_genre WHERE peli_genre.peli_id=peli.id AND peli_genre.genre_id=' . $id . ' ORDER BY peli.nimi');
+        
+        foreach ($rows as $row) {
+            $pelit[] = new Peli(array(
+                'id' => $row['id'],
+                'omistaja' => $row['omistaja'],
+                'nimi' => $row['nimi'],
+                'julkaisuvuosi' => $row['julkaisuvuosi'],
+                'julkaisija' => $row['julkaisija'],
+                'tyyppi' => $row['tyyppi'],
+                'pelaajat_min' => $row['pelaajat_min'],
+                'pelaajat_max' => $row['pelaajat_max'],
+                'lisayspaiva' => $row['lisayspaiva'],
+                'kuvaus' => $row['kuvaus']
+            ));
+        }
+
+        return $pelit;
+    }
+    
 
     public static function create($uusitaulukko) {
         // Onko mahdollista, että erroreita tulee, koska taulukossa on tyhjiä alkioita?

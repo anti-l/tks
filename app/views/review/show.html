@@ -8,45 +8,42 @@
 
 <h1>Arvio: <i>{{peli.nimi}}</i></h1>
 <!-- Painikkeet tähän -->
-{% block kirjautuneena_voi_poistaa %}
-{% if user_logged_in %}
-<table border="0" cellpadding="2" cellspacing="2">
-    <tr>
-        <td>
-            <form method="post" action="{{base_path}}/review/{{arvostelu.id}}/delete">
-                <button type="submit" class="btn btn-danger">Poista</button>
-            </form>
-        </td>
-        <td>&nbsp;</td>
-        <td>
-            <form method="get" action="{{base_path}}/review/{{arvostelu.id}}/edit">
-                <button type="submit" class="btn btn-default">Muokkaa</button>
-            </form>
-        </td>
-    </tr>
-</table>
-{% endif %}
-{% endblock %}
-<br>
 
 <!-- Tiedot tulee taulukossa tähän -->
 <table class="table table-striped table-bordered">
     <tr>
         <td width="150"><strong>Arvostelija</strong></td>
-        <td>{{kayttaja.nimi}}</td>
+        <td colspan="2">{{kayttaja.nimi}}</td>
     </tr>
     <tr>
         <td><strong>Peli</strong></td>
-        <td>{{peli.nimi}}</td>
+        <td colspan="2">{{peli.nimi}}</td>
     </tr>
     <tr>
         <td><strong>Arvio</strong></td>
-        <td>{{arvostelu.arvio}}</td>
+        <td colspan="2">{{arvostelu.arvio}}</td>
     </tr>
     <tr>
         <td><strong>Arvostelu</strong></td>
-        <td>{{arvostelu.arvostelu}}</td>
+        <td colspan="2">{{arvostelu.arvostelu}}</td>
     </tr>
+    {% block kirjautuneena_voi_poistaa %}
+    {% if user_logged_in %}
+    <tr>
+        <td>&nbsp;</td>
+        <td align="right">
+            <form method="post" action="{{base_path}}/review/{{arvostelu.id}}/delete">
+                <button type="submit" class="btn btn-danger">Poista</button>
+            </form>
+        </td>
+        <td width="100">
+            <form method="get" action="{{base_path}}/review/{{arvostelu.id}}/edit">
+                <button type="submit" class="btn btn-default">Muokkaa</button>
+            </form>
+        </td>
+    </tr>
+    {% endif %}
+    {% endblock %}
 </table>
 
 {% endblock %}

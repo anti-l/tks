@@ -180,3 +180,17 @@ $app->get('/review/reviewer/:id', function($id) {
 });
 
 
+// GENRET
+
+// Genre-sivun näyttäminen
+$app->get('/genre', function() {
+    GenreKontrolleri::list_all();
+});
+
+// Yhden genren pelien näyttäminen
+$app->get('/genre/:id', function($id) {
+    GenreKontrolleri::list_one($id);
+});
+
+
+

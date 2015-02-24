@@ -92,13 +92,11 @@ class Kayttaja extends BaseModel {
 
         // Talletetaan parametrinä annetun taulukon tiedot tietokantaan, otetaan rivi talteen
         $row = DB::query('UPDATE kayttaja SET nimi=:nimi, salasana=:salasana WHERE id=:id RETURNING id', $uusi);
-        //$row = DB::query('UPDATE kayttaja SET nimi=' . :nimi . ', salasana=' . :salasana . ' WHERE id=' . :id . ' RETURNING id', $uusi);
 
-        // Palautetaan lisätyn pelin rivin id
+        // Palautetaan muokatun käyttäjän rivin id
         return $row[0]['id'];
     }
 
-    
     
     // VALIDAATTORIT
     

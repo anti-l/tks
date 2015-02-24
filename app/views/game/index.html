@@ -14,7 +14,6 @@
             <th>Julkaisija</th>
             <th>Vuosi</th>
             <th>Pelaajia</th>
-            <th>Genre</th>
             <th>Lisäyspäivä</th>
             {% block kirjautuneena_voi_muokata1 %}
             {% if user_logged_in %}
@@ -31,11 +30,10 @@
             <td>{{peli.julkaisija}}</td>
             <td>{{peli.julkaisuvuosi}}</td>
             <td>{{peli.pelaajat_min}} - {{peli.pelaajat_max}}</td>
-            <td></td>
             <td>{{peli.lisayspaiva}}</td>
             {% block kirjautuneena_voi_muokata2 %}
             {% if user_logged_in %}
-            <td><a class="btn btn-default btn-sm" href="{{base_path}}/game/{{peli.id}}/edit">Muokkaa</a></td>
+            <td width="100"><a class="btn btn-default btn-sm" href="{{base_path}}/game/{{peli.id}}">N&auml;yt&auml;</a></td>
             {% endif %}
             {% endblock %}
         </tr>
@@ -43,7 +41,7 @@
         {% block kirjautuneena_voi_lisata %}
         {% if user_logged_in %}
         <tr>
-            <td colspan="6">&nbsp;</td>
+            <td colspan="5">&nbsp;</td>
             <td><a class="btn btn-success btn-sm" href="{{base_path}}/game/uusi">Luo uusi</a></td>
         </tr>
     </tbody>

@@ -15,20 +15,17 @@
 {% endif %}
 
 
-
 <form method="post" action="{{base_path}}/review/{{attribuutit.id}}/edit">
-
     <input name="id" class="form-control" type="hidden" value="{{attribuutit.id}}">
     <input name="arvostelija" class="form-control" type="hidden" value="{{user_logged_in.id}}">
-    
-    <div class="form-group">
-        <label>Peli</label>
-        <input name="peli" class="form-control" type="text" value="{{peli.nimi}}" disabled>
-    </div>
-
-
-    <div class="form-group">
-        <label>Arvio</label>
+    <table class="table table-striped table-bordered">
+        <tr>
+            <td width="150"><strong>Peli</strong></td>
+            <td><input name="peli" class="form-control" type="text" value="{{peli.nimi}}" disabled></td>
+        </tr>
+        <tr>
+            <td><strong>Arvio</strong></td>
+            <td>
         <select name="arvio" class="form-control" size="1">
             <option value="5">5</option>
             <option value="4">4</option>
@@ -36,17 +33,18 @@
             <option value="2">2</option>
             <option value="1">1</option>
         </select>
-    </div>
-
-    <div class="form-group">
-        <label>Arvostelu</label>
-        <input name="arvostelu" class="form-control" type="text" value="{{attribuutit.arvostelu}}">
-    </div>
-
-    <div class="form-group">
-        <button type="submit" class="btn btn-primary">Tallenna</button>
-    </div>
-
+            </td>
+        </tr>
+        <tr>
+            <td><strong>Arvostelu</strong></td>
+            <td><input name="arvostelu" class="form-control" value="{{attribuutit.arvostelu}}" placeholder="Vapaamuotoinen arvostelu pelistä."></td>
+        </tr>
+        <tr>
+            <td colspan="2" align="right">
+            <button type="submit" class="btn btn-primary">Tallenna muutokset</button>
+            </td>
+        </tr>
+    </table>
 </form>
 
 {% endblock %}

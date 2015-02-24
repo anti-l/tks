@@ -14,58 +14,60 @@
 </div>
 {% endif %}
 
-<form method="post" action="{{base_path}}/game/{{attribuutit.id}}/edit">
-    <input name="id" type="hidden" value="{{attribuutit.id}}">
 
-    <div class="form-group">
-        <label>Nimi</label>
-        <input name="nimi" class="form-control" type="text" value="{{attribuutit.nimi}}">
-    </div>
 
-    <div class="form-group">
-        <label>Omistaja</label>
-        <select name="omistaja" class="form-control" size="1">
-            {% for omistaja in omistajat %}
-            <option value="{{omistaja.id}}">{{omistaja.nimi}}</option>
-            {% endfor %}
-        </select>
-    </div>
 
-    <div class="form-group">
-        <label>Julkaisuvuosi</label>
-        <input name="julkaisuvuosi" class="form-control" type="text" value="{{attribuutit.julkaisuvuosi}}">
-    </div>
+<table class="table table-striped table-bordered">
+    <form method="post" action="{{base_path}}/game/{{attribuutit.id}}/edit">
+        <input name="id" type="hidden" value="{{attribuutit.id}}">
+        <tr>
+            <td width="150"><strong>Nimi</strong></td>
+            <td colspan="2"><input name="nimi" class="form-control" type="text" value="{{attribuutit.nimi}}"></td>
+        </tr>
+        <tr>
+            <td><strong>Omistaja</strong></td>
+            <td colspan="2">
+                <select name="omistaja" class="form-control" size="1">
+                    {% for omistaja in omistajat %}
+                    <option value="{{omistaja.id}}">{{omistaja.nimi}}</option>
+                    {% endfor %}
+                </select>
+            </td>
+        </tr>
+        <tr>
+            <td><strong>Julkaisuvuosi</strong></td>
+            <td colspan="2"><input name="julkaisuvuosi" class="form-control" type="text" value="{{attribuutit.julkaisuvuosi}}"></td>
+        </tr>
+        <tr>
+            <td><strong>Julkaisija</strong></td>
+            <td colspan="2"><input name="julkaisija" class="form-control" type="text" value="{{attribuutit.julkaisija}}"></td>
+        </tr>
+        <tr>
+            <td><strong>Pelaajien määrä</strong></td>
+            <td><input name="pelaajat_min" class="form-control" type="text" value="{{attribuutit.pelaajat_min}}" placeholder="Minimimäärä"></td> 
+            <td><input name="pelaajat_max" class="form-control" type="text" value="{{attribuutit.pelaajat_max}}" placeholder="Maksimimäärä"></td>
+        </tr>
+        <tr>
+            <td><strong>Kuvaus</strong></td>
+            <td colspan="2"><input name="kuvaus" class="form-control" value="{{attribuutit.kuvaus}}"></td>
+        </tr>
+        <tr>
+            <td colspan="3" align="right">
+                <button type="submit" class="btn btn-primary">Tallenna muutokset</button>
+    </form>
+            </td>
+        </tr>
+        <tr>
+            <td colspan="3" align="right">
 
-    <div class="form-group">
-        <label>Julkaisija</label>
-        <input name="julkaisija" class="form-control" type="text" value="{{attribuutit.julkaisija}}">
-    </div>
+                {% if user_logged_in %}
+                <form method="post" action="{{base_path}}/game/{{attribuutit.id}}/delete" class="destroy-form" data-confirm="Haluatko varmasti poistaa pelin?">
+                    <button type="submit" class="btn btn-danger">Poista</button>
+                </form>
+                {% endif %}
+            </td>
+        </tr>
+</table>
 
-    <div class="form-group">
-        <label>Pelaajien minimimäärä</label>
-        <input name="pelaajat_min" class="form-control" type="text" value="{{attribuutit.pelaajat_min}}">
-    </div>
-
-    <div class="form-group">
-        <label>Pelaajien maksimimäärä</label>
-        <input name="pelaajat_max" class="form-control" type="text" value="{{attribuutit.pelaajat_max}}">
-    </div>
-
-    <div class="form-group">
-        <label>Kuvaus</label>
-        <textarea name="kuvaus" class="form-control" value="{{attribuutit.kuvaus}}"></textarea>
-    </div>
-
-    <div class="form-group">
-        <button type="submit" class="btn btn-primary">Tallenna muutokset</button>
-    </div>
-
-</form>
-
-{% if user_logged_in %}
-<form method="post" action="{{base_path}}/game/{{attribuutit.id}}/delete" class="destroy-form" data-confirm="Haluatko varmasti poistaa pelin?">
-    <button type="submit" class="btn btn-danger">Poista</button>
-</form>
-{% endif %}
 
 {% endblock %}

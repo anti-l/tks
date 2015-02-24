@@ -22,8 +22,6 @@ class ArvosteluKontrolleri extends BaseController {
     public static function review_show($id) {
         // Kutsutaan arvostelu-luokan listaa-yksi -metodia.
         $arvostelu = Arvostelu::review_find($id);
-//        $peli = Peli::find($id);
-//        $kayttaja = Kayttaja::find($id);
         $peli = Peli::find($arvostelu->peli);
         $kayttaja = Kayttaja::find($arvostelu->arvostelija);
         self::render_view('review/show.html', array('arvostelu' => $arvostelu, 'kayttaja' => $kayttaja, 'peli' => $peli));
@@ -42,20 +40,20 @@ class ArvosteluKontrolleri extends BaseController {
     public static function review_update($id){
         self::check_logged_in();
         self::redirect_to('/review', array('message' => 'Toiminto tulossa.'));
-        /*
+        /* 
         $params = $_POST;
         
         $attribuutit = array(
             'id' => $params['id'],
             'arvostelija' => $params['arvostelija'],
-            'peli' => $params['peli'],
+            'peli' => $params['nimi'],
             'arvio' => $params['arvio'],
             'arvostelu' => $params['arvostelu']
         );
         
         Arvostelu::review_update($attribuutit);
         self::render_view('/review/index.html', array('message' => 'Muokkaus onnistui.'));
-        */
+        /* */
     }
     
     public static function review_poista($id){

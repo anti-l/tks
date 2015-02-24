@@ -50,9 +50,12 @@ class PeliKontrolleri extends BaseController {
 
         // Haetaan pelin id:tä vastaava arvostelu tietokannasta
         $arvostelut = Arvostelu::review_list($id);
+        
+        // Haetaan vielä genret tietokannan eri tauluista
+        $genret = Genre::get_genres($id);
 
         // Näytetään haetun pelin tiedot ja arvostelut
-        self::render_view('game/pelinakyma.html', array('peli' => $peli, 'arvostelut' => $arvostelut, 'omistaja' => $omistaja));
+        self::render_view('game/pelinakyma.html', array('peli' => $peli, 'arvostelut' => $arvostelut, 'omistaja' => $omistaja, 'genret' => $genret));
     }
 
     public static function tallenna() {
@@ -88,18 +91,6 @@ class PeliKontrolleri extends BaseController {
 
     public static function luoUusi() {
         $omistajat = Kayttaja::all();
-        /*
-          $attributes = array(
-          'nimi' => 0,
-          'omistaja' => 1,
-          'julkaisija' => 0,
-          'julkaisuvuosi' => 0,
-          'tyyppi' => 0,
-          'pelaajat_min' => 0,
-          'pelaajat_max' => 0);
-         * 
-          self::render_view('game/uusi.html', array('attribuutit' => $attributes, 'omistajat' => $omistajat));
-         */
         self::render_view('game/uusi.html', array('omistajat' => $omistajat));
     }
 
