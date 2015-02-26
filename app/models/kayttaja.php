@@ -87,7 +87,6 @@ class Kayttaja extends BaseModel {
         DB::query('DELETE from Kayttaja WHERE id=' . $id);
     }
 
-    
     public static function update($uusi) {
 
         // Talletetaan parametrinä annetun taulukon tiedot tietokantaan, otetaan rivi talteen
@@ -97,9 +96,8 @@ class Kayttaja extends BaseModel {
         return $row[0]['id'];
     }
 
-    
     // VALIDAATTORIT
-    
+
     public function validate_nimi() {
 
         // Nimen validointi: Nimi ei saa olla tyhjä.

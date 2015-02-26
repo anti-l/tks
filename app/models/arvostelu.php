@@ -87,12 +87,13 @@ class Arvostelu extends BaseModel {
         $arvostelut = array();
 
         // Haetaan tietokannasta rivit
-        $rows = DB::query('SELECT arvostelu.id AS id, kayttaja.nimi AS arvostelija, peli.nimi AS peli, arvostelu, arvio FROM arvostelu, kayttaja, peli WHERE arvostelu.arvostelija=kayttaja.id AND arvostelu.peli=peli.id AND arvostelija=' . $id . ' ORDER BY peli');
+        $rows = DB::query('SELECT arvostelu.id AS id, kayttaja.nimi AS arvostelija, peli.nimi AS peli, peli.id AS peli_id, arvostelu, arvio FROM arvostelu, kayttaja, peli WHERE arvostelu.arvostelija=kayttaja.id AND arvostelu.peli=peli.id AND arvostelija=' . $id . ' ORDER BY peli');
 
         // Käydään rivit läpi
         foreach ($rows as $row) {
             $arvostelut[] = new Arvostelu(array(
                 'id' => $row['id'],
+                'peli_id' => $row['peli_id'],
                 'arvostelija' => $row['arvostelija'],
                 'peli' => $row['peli'],
                 'arvostelu' => $row['arvostelu'],

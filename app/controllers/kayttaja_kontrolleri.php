@@ -85,10 +85,12 @@ class KayttajaKontrolleri extends BaseController {
     public static function user_update($id){
         self::check_logged_in();
         
-        /**
+        /**/
+        $params = $_POST;
         $tiedot = array(
-            'nimi' => $_POST['nimi'],
-            'salasana' => $_POST['salasana']
+            'id' => $params['id'],
+            'nimi' => $params['nimi'],
+            'salasana' => $params['salasana']
         );
         
         $uusi_kayttaja = new Kayttaja($tiedot);

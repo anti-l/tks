@@ -39,21 +39,18 @@ class ArvosteluKontrolleri extends BaseController {
     
     public static function review_update($id){
         self::check_logged_in();
-        self::redirect_to('/review', array('message' => 'Toiminto tulossa.'));
-        /* 
         $params = $_POST;
         
         $attribuutit = array(
             'id' => $params['id'],
             'arvostelija' => $params['arvostelija'],
-            'peli' => $params['nimi'],
+            'peli' => $params['peli_id'],
             'arvio' => $params['arvio'],
             'arvostelu' => $params['arvostelu']
         );
         
         Arvostelu::review_update($attribuutit);
-        self::render_view('/review/index.html', array('message' => 'Muokkaus onnistui.'));
-        /* */
+        self::redirect_to('/review', array('message' => 'Muokkaus onnistui.'));
     }
     
     public static function review_poista($id){
@@ -67,11 +64,11 @@ class ArvosteluKontrolleri extends BaseController {
     public static function review_luo(){
         // Ennen arvostelun luomista tarkistetaan sisäänkirjaus, sitten ohjataan uuden arvostelunn luomissivulle
         self::check_logged_in();
-        //self::redirect_to('/review', array('message' => 'Toiminto tulossa.'));
 
-        //Post-pyynnön muuttujat haetaan $_POST -assosiaatiolistasta
+        // Post-pyynnön muuttujat haetaan $_POST -assosiaatiolistasta
         $params = $_POST;
 
+        // Luodaan uusi assosiaatiolista
         $attribuutit = array(
             'arvostelija' => $params['arvostelija'],
             'peli' => $params['peli'],
@@ -79,12 +76,15 @@ class ArvosteluKontrolleri extends BaseController {
             'arvostelu' => $params['arvostelu']
         );
 
+        // Listasta luodaan uusio olio, talletetaan sen id (turhaa?)
         $arvostelu = new Arvostelu($attribuutit);
         $id = Arvostelu::review_luo($attribuutit);
         self::redirect_to('/review', array('message' => 'Arvostelu lisätty.'));
     }
     
     public static function review_uusi(){
+        // Tällä metodilla luodaan uusi arvostelu. Ensin listataan kaikki pelit,
+        // lista annetaan html-sivulle jotta pudotusvalikko toimii.
         $pelit = Peli::all();
         self::render_view('/review/uusi.html', array('pelit' => $pelit));
     }

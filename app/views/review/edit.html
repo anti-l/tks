@@ -17,6 +17,7 @@
 
 <form method="post" action="{{base_path}}/review/{{attribuutit.id}}/edit">
     <input name="id" class="form-control" type="hidden" value="{{attribuutit.id}}">
+    <input name="peli_id" class="form-control" type="hidden" value="{{peli.id}}">
     <input name="arvostelija" class="form-control" type="hidden" value="{{user_logged_in.id}}">
     <table class="table table-striped table-bordered">
         <tr>
