@@ -18,7 +18,6 @@ CREATE TABLE Peli(
 	nimi varchar(255) NOT NULL,
 	julkaisuvuosi INTEGER,
 	julkaisija varchar(255),
-	tyyppi INTEGER,
 	pelaajat_min INTEGER,
 	pelaajat_max INTEGER,
 	lisayspaiva DATE,
