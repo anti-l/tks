@@ -1,29 +1,36 @@
 {% extends "base.html" %}
 
 {% block content %}
-  <h1>Kirjaudu sisään</h1>
+<h1>Kirjaudu sisään</h1>
 
-  <!-- Sisäänkirjautumisviestit -->
-  {% if error != '' %}
-  <div class="alert alert-danger">{{error}}</div>
-  {% endif %}
-  
+<!-- Sisäänkirjautumisviestit -->
+{% if error != '' %}
+<div class="alert alert-danger">{{error}}</div>
+{% endif %}
 
-  <!-- Kaikki lomakkeen elementit form-tagin sisään -->
-  <form method="post" action="{{base_path}}/login">
-      
-    <!-- Tekstikenttä käyttäjätunnukselle -->
-    <div class="form-group">
-      <label>Käyttäjätunnus</label>
-      <input class="form-control" name="username" type="text">
-    </div>
+<table class="table table-striped table-bordered">
+    <form method="post" action="{{base_path}}/login">
+        <tr>
+            <td width="150"><strong>K&auml;ytt&auml;j&auml;tunnus</strong></td>
+            <td><input class="form-control" name="username" type="text" value="{{attribuutit.nimi}}"></td>
+        </tr>
+        <tr>
+            <td width="150"><strong>Salasana</strong></td>
+            <td><input class="form-control" name="password" type="password" value="{{attribuutit.salasana}}"></td>
+        </tr>
+        <tr>
+            <td colspan="2" align="right"><button type="submit" class="btn btn-primary">Kirjaudu sis&auml;&auml;n</button></td>
+        </tr>
+    </form>
+    <!--
+    <form method="get" action="{{base_path}}/user/uusi">
+        <tr>
+            <td colspan="2" align="right">
+                <button type="submit" class="btn btn-success">Rekister&ouml;idy</button>
+            </td>
+        </tr>
+    </form>
+    -->
+</table>
 
-    <!-- Salasanakenttä salasanalle -->
-    <div class="form-group">
-      <label>Salasana</label>
-      <input class="form-control" name="password" type="password">
-    </div>
-
-    <button type="submit" class="btn btn-primary">Kirjaudu sisään</button>
-  </form>
 {% endblock %}

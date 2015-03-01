@@ -69,7 +69,6 @@ class PeliKontrolleri extends BaseController {
             'omistaja' => $params['omistaja'],
             'julkaisija' => $params['julkaisija'],
             'julkaisuvuosi' => $params['julkaisuvuosi'],
-            //'tyyppi' => $params['tyyppi'],
             'pelaajat_min' => $params['pelaajat_min'],
             'pelaajat_max' => $params['pelaajat_max'],
             'lisayspaiva' => date("Y-m-d"),
@@ -116,7 +115,6 @@ class PeliKontrolleri extends BaseController {
             'omistaja' => $params['omistaja'],
             'julkaisija' => $params['julkaisija'],
             'julkaisuvuosi' => $params['julkaisuvuosi'],
-            //'tyyppi' => $params['tyyppi'],
             'pelaajat_min' => $params['pelaajat_min'],
             'pelaajat_max' => $params['pelaajat_max'],
             'kuvaus' => $params['kuvaus']

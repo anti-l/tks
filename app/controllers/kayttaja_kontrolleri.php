@@ -85,7 +85,6 @@ class KayttajaKontrolleri extends BaseController {
     public static function user_update($id){
         self::check_logged_in();
         
-        /**/
         $params = $_POST;
         $tiedot = array(
             'id' => $params['id'],
@@ -104,8 +103,6 @@ class KayttajaKontrolleri extends BaseController {
             // Käyttäjän tiedoissa oli jotain vikaa, palautetaan virheet ja attribuutit
             self::render_view('/user/user_uusi.html', array('virheet' => $virheet, 'attribuutit' => $tiedot));
         }
-        /**/
-        self::redirect_to('/user', array('message' => 'Toiminto tulossa.'));
     }
     
 }

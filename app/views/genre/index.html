@@ -22,7 +22,6 @@
         <tr>
             <td>{{genre.id}}</td>
             <td>
-                <!--<label class="label label-default">{{genre.genretxt}}</label>-->
                 {% if genre.genretxt == "Co-Operative" %}
                 <label class="label label-success">{{genre.genretxt}}</label> 
                 {% elseif genre.genretxt == "Competitive" %}
@@ -44,8 +43,5 @@
         -->
     </tbody>
 </table>
-
-
-<p></p>
 
 {% endblock %}

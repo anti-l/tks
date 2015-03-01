@@ -90,35 +90,31 @@ class Peli extends BaseModel {
 
     public static function get_all_games_one_genre($id){
         $pelit = array();
-        $rows = DB::query('SELECT * FROM peli, peli_genre WHERE peli_genre.peli_id=peli.id AND peli_genre.genre_id=' . $id . ' ORDER BY peli.nimi');
+        $rows = DB::query('SELECT peli.id, peli.julkaisija, peli.nimi, peli.julkaisuvuosi, peli.pelaajat_min, peli.pelaajat_max, peli.lisayspaiva, peli_genre.peli_id, peli_genre.genre_id FROM peli, peli_genre WHERE peli_genre.peli_id=peli.id AND peli_genre.genre_id=' . $id . ' ORDER BY peli.nimi');
+        
         
         foreach ($rows as $row) {
             $pelit[] = new Peli(array(
                 'id' => $row['id'],
-                'omistaja' => $row['omistaja'],
                 'nimi' => $row['nimi'],
                 'julkaisuvuosi' => $row['julkaisuvuosi'],
                 'julkaisija' => $row['julkaisija'],
-                'tyyppi' => $row['tyyppi'],
                 'pelaajat_min' => $row['pelaajat_min'],
                 'pelaajat_max' => $row['pelaajat_max'],
                 'lisayspaiva' => $row['lisayspaiva'],
-                'kuvaus' => $row['kuvaus']
             ));
         }
-
+        
         return $pelit;
     }
     
 
     public static function create($uusitaulukko) {
-        // Onko mahdollista, että erroreita tulee, koska taulukossa on tyhjiä alkioita?
         // Talletetaan parametrinä annetun taulukon tiedot tietokantaan, otetaan rivi talteen
         $row = DB::query('INSERT INTO Peli (nimi, omistaja, julkaisuvuosi, julkaisija, pelaajat_min, pelaajat_max, kuvaus, lisayspaiva) VALUES (:nimi, :omistaja, :julkaisuvuosi, :julkaisija, :pelaajat_min, :pelaajat_max, :kuvaus, :lisayspaiva) RETURNING id', $uusitaulukko);
 
         // Palautetaan lisätyn pelin rivin id
         return $row[0]['id'];
-        //return $row;
     }
 
     public static function destroy($id) {
