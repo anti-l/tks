@@ -14,6 +14,7 @@
             <th>ID</th>
             <th>Genren tyyppi</th>
             <th width="90"></th>
+            <th width="90"></th>
         </tr>
     </thead>
 
@@ -30,17 +31,18 @@
                 <label class="label label-default">{{genre.genretxt}}</label> 
                 {% endif %}
             </td>
-            <td><a class="btn btn-default btn-sm" href="{{base_path}}/genre/{{genre.id}}">Näytä pelit</a></td>
+            <td><a class="btn btn-default btn-sm" href="{{base_path}}/genre/{{genre.id}}/list">Näytä pelit</a></td>
+            {% if user_logged_in %}
+            <td><a class="btn btn-danger btn-sm"  href="{{base_path}}/genre/{{genre.id}}/delete">Poista</a></td>
+            {% endif %}
         </tr>
         {% endfor %}
-        <!--
         {% if user_logged_in %}
         <tr>
-            <td colspan="2">&nbsp;</td>
+            <td colspan="3">&nbsp;</td>
             <td align="right"><a class="btn btn-success btn-sm" href="{{base_path}}/genre/uusi">Luo uusi</a></td>
         </tr>
         {% endif %}
-        -->
     </tbody>
 </table>
 

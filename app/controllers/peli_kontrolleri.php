@@ -6,22 +6,6 @@ class PeliKontrolleri extends BaseController {
         self::render_view('home.html');
     }
 
-    /* Tää toteutus ei skulaa vielä.
-      // Metodi, jolla voidaan hakea pelin nimellä listaus
-      public static function search($options){
-
-      $params = $_POST;
-
-      if(isset($params['search'])){
-      $options['search'] = $params['search'];
-      }
-
-      $pelit = Peli::search($options);
-
-      self::render_view('game/index.html', array('games' => $games));
-      }
-     */
-
     public static function game_list() {
 
         // Haetaan kaikki pelit tietokannasta
@@ -60,6 +44,7 @@ class PeliKontrolleri extends BaseController {
 
     public static function tallenna() {
 
+        self::check_logged_in();
         //Post-pyynnön muuttujat haetaan $_POST -assosiaatiolistasta
         $params = $_POST;
         $omistajat = Kayttaja::all();
@@ -89,11 +74,13 @@ class PeliKontrolleri extends BaseController {
     }
 
     public static function luoUusi() {
+        self::check_logged_in();
         $omistajat = Kayttaja::all();
         self::render_view('game/uusi.html', array('omistajat' => $omistajat));
     }
 
     public static function game_edit($id) {
+        self::check_logged_in();
         // Haetaan id:tä vastaava peli tietokannasta
         $peli = Peli::find($id);
         $omistajat = Kayttaja::all();
@@ -138,6 +125,7 @@ class PeliKontrolleri extends BaseController {
 
     // Pelin poistaminen järjestelmästä
     public static function destroy($id) {
+        self::check_logged_in();
         // Peli poistetaan Peli-luokan metodilla destroy($id)
         Peli::destroy($id);
         // Viedään käyttäjä takaisin etusivulle

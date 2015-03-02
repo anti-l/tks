@@ -43,8 +43,28 @@ class Genre extends BaseModel {
 
         return $genret;
     }
+    
+    public function luo($tiedot){
+        // Talletetaan parametrinä annetun taulukon tiedot tietokantaan, otetaan rivi talteen
+        $row = DB::query('INSERT INTO genre (genretxt) VALUES (:genretxt);', $tiedot);
+    }
+    
+    public function delete($id){
+        // Genren poistaminen
+        DB::query('DELETE FROM genre WHERE id=' . $id);
+    }
 
-    // VALIDAATTORIT
+
+    public function lisaa_yksi($tiedot){
+        DB::query('INSERT INTO peli_genre (peli_id, genre_id) VALUES (:id, :gid)', $tiedot);
+    }
+
+    public function poista_yksi($tiedot){
+        DB::query('DELETE FROM peli_genre WHERE peli_id=:id AND genre_id=:gid', $tiedot);
+    }
+
+
+// VALIDAATTORIT
     
     public function validate_genretxt() {
 

@@ -37,31 +37,6 @@ class Peli extends BaseModel {
         return $pelit;
     }
 
-    /* Tää toteutus ei skulaa vielä.
-      // Metodi, joka etsii tietokannasta tietyn nimisiä pelejä ja palauttaa ne oliotauluna
-      public static function search($options) {
-      //$user_id = $options['user_id'];
-      $query = 'SELECT * FROM Peli ';
-      //$options = array('user_id' => $user_id);
-
-      if (isset($options['search'])) {
-      $like = '%' . $options['search'] . '%';
-      $query .= ' WHERE nimi LIKE :like ORDER BY nimi';
-      $options['like'] = $like;
-      }
-
-      $rows = DB::query($query, $options);
-      $games = array();
-
-      foreach ($rows as $row) {
-      $games[] = new Game($row);
-      }
-
-      return $games;
-      }
-     * 
-     */
-
     // Metodi, joka hakee tietyn pelin tietokannasta
     public static function find($id) {
         $rows = DB::query('SELECT * from Peli WHERE id = :id LIMIT 1', array('id' => $id));

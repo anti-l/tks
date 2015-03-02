@@ -1,7 +1,12 @@
 {% extends "base.html" %}
 
 {% block content %}
-  <div class="page-header">
+
+{% if message != '' %}
+<div class="alert alert-success">{{message}}</div>
+{% endif %}
+
+<div class="page-header">
     <h1>Pursiksen pelikirjasto</h1>
   </div>
 

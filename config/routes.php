@@ -187,10 +187,39 @@ $app->get('/genre', function() {
     GenreKontrolleri::list_all();
 });
 
+// Uuden genren luonti
+$app->get('/genre/uusi', function() {
+    GenreKontrolleri::add();
+});
+
+// Uuden genren tallennus
+$app->post('/genre/uusi', function() {
+    GenreKontrolleri::save();
+});
+
+// Yhden genren poisto
+$app->get('/genre/:id/delete', function($id) {
+    GenreKontrolleri::delete($id);
+});
+
 // Yhden genren pelien näyttäminen
-$app->get('/genre/:id', function($id) {
+$app->get('/genre/:id/list', function($id) {
     GenreKontrolleri::list_one($id);
 });
 
+// Yhden pelin genren editoiminen
+$app->get('/game/:id/genre', function($id) {
+    GenreKontrolleri::edit($id);
+});
+
+// Yhden pelin yhden genren poisto
+$app->post('/game/:id/remove', function($id) {
+   GenreKontrolleri::poista_yksi($id);
+});
+
+// Yhden pelin yhden genren lisäys
+$app->post('/game/:id/add', function($id) {
+   GenreKontrolleri::lisaa_yksi($id);
+});
 
 
