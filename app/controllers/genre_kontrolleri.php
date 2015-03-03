@@ -64,7 +64,7 @@ class GenreKontrolleri extends BaseController {
         // Haetaan genret
         $genret = Genre::list_genres();
         $nykyiset = Genre::get_genres($id);
-        
+
         // Ohjataan käyttäjä genren editointisivulle.
         self::render_view('genre/edit.html', array('peli' => $peli, 'genret' => $genret, 'nykyiset' => $nykyiset));
     }
@@ -74,10 +74,21 @@ class GenreKontrolleri extends BaseController {
         self::check_logged_in();
         
         $params = $_POST;
+        
+        // Jos ollaan poistettu kaikki genret peliltä, POST-listan pituus on vain pelin id
+        if (sizeof($params) == 1) {
+            // Haetaan pelin id:llä kyseisen pelin nimi, kaikki genret lisäystä varten sekä nykyiset genret (0)
+            $peli = Peli::find($id);
+            $genret = Genre::list_genres();
+            $nykyiset = Genre::get_genres($id);
+            // Näytetään sivu viestin kanssa.
+            self::render_view('genre/edit.html', array('peli' => $peli, 'genret' => $genret, 'nykyiset' => $nykyiset, 'virheet'=>'Ei poistettavaa.'));
+        }
+
+        // Luodaan lomakkeen tiedoista lista
         $tiedot = array(
-            
-            'id' => $params['id'],
-            'gid' => $params['nykyiset.id']
+            'id' => $params['peli_id'],
+            'gid' => $params['genret_nykyiset']
         );
         
         // Poistetaan yksi genremerkintä
@@ -91,7 +102,7 @@ class GenreKontrolleri extends BaseController {
         $nykyiset = Genre::get_genres($id);
         
         // Ohjataan käyttäjä genren editointisivulle.
-        self::render_view('genre/edit.html', array('peli' => $peli, 'genret' => $genret, 'nykyiset' => $nykyiset, 'message'=>'Yksi poistettu.'));
+        self::render_view('genre/edit.html', array('peli' => $peli, 'genret' => $genret, 'nykyiset' => $nykyiset, 'message'=>'Yksi merkintä poistettu.'));
     }
     
     public static function lisaa_yksi($id){
@@ -100,12 +111,12 @@ class GenreKontrolleri extends BaseController {
         
         $params = $_POST;
         $tiedot = array(
-            'id' => $params['id'],
-            'gid' => $params['genret.id']
+            'id' => $params['peli_id'],
+            'gid' => $params['genret_kaikki']
         );
         
         // Lisätään yksi genremerkintä
-        //Genre::lisaa_yksi($tiedot);
+        Genre::lisaa_yksi($tiedot);
 
         // Haetaan pelin tiedot
         $peli = Peli::find($id);
@@ -115,7 +126,7 @@ class GenreKontrolleri extends BaseController {
         $nykyiset = Genre::get_genres($id);
         
         // Ohjataan käyttäjä genren editointisivulle.
-        self::render_view('genre/edit.html', array('peli' => $peli, 'genret' => $genret, 'nykyiset' => $nykyiset, 'message'=>'Yksi lisätty.'));
+        self::render_view('genre/edit.html', array('peli' => $peli, 'genret' => $genret, 'nykyiset' => $nykyiset, 'message'=>'Yksi merkintä lisätty.'));
     }
     
 }

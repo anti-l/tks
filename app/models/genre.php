@@ -32,7 +32,8 @@ class Genre extends BaseModel {
     // Metodi, joka listaa yhden pelin kaikki genret
     public static function get_genres($id){
         $genret = array();
-        $rows = DB::query('SELECT peli_genre.peli_id AS id, genre.genretxt AS genretxt FROM peli_genre, genre WHERE peli_genre.genre_id=genre.id AND peli_genre.peli_id=' . $id . ' ORDER BY genretxt');
+        $rows = DB::query('SELECT peli_genre.genre_id AS id, genre.genretxt AS genretxt FROM peli_genre, genre WHERE peli_genre.genre_id=genre.id AND peli_genre.peli_id=' . $id . ' ORDER BY genretxt');
+        //$rows = DB::query('SELECT peli_genre.peli_id AS id, genre.genretxt AS genretxt FROM peli_genre, genre WHERE peli_genre.genre_id=genre.id AND peli_genre.peli_id=' . $id . ' ORDER BY genretxt');
         
         foreach ($rows as $row) {
             $genret[] = new Genre(array(
@@ -56,7 +57,10 @@ class Genre extends BaseModel {
 
 
     public function lisaa_yksi($tiedot){
-        DB::query('INSERT INTO peli_genre (peli_id, genre_id) VALUES (:id, :gid)', $tiedot);
+        //DB::query('INSERT INTO peli_genre (peli_id, genre_id) VALUES (:id, :gid)', $tiedot);
+        // Hieman elegantimpi tapa: ei lisätä toista samanlaista riviä, jos sellainen löytyy jo
+        DB::query('INSERT INTO peli_genre (peli_id, genre_id) SELECT :id, :gid WHERE NOT EXISTS ( SELECT peli_id, genre_id FROM peli_genre WHERE peli_id=:id AND genre_id=:gid)', $tiedot);
+        
     }
 
     public function poista_yksi($tiedot){

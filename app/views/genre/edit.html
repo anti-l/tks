@@ -9,13 +9,7 @@
 {% endif %}
 
 {% if virheet %}
-<div class="alert alert-danger">
-    <ul>
-        {% for error in virheet %}
-        <li>{{error}}</li>
-        {% endfor %}
-    </ul>
-</div>
+<div class="alert alert-danger">{{virheet}}</div>
 {% endif %}
 
 
@@ -36,7 +30,6 @@
     </tr>
     <form method="post" action="{{base_path}}/game/{{peli.id}}/remove">
     <tr>
-        <input name="id" type="hidden" value="{{peli.id}}">
         <td><strong>Poista</strong></td>
         <td colspan="1">
             <select name="genret_nykyiset" class="form-control" size="1">
@@ -49,11 +42,11 @@
             <button type="submit" class="btn btn-danger btn-sm">Poista</button>
         </td>
     </tr>
+    <input name="peli_id" type="hidden" value="{{peli.id}}">
     </form>
     
     <form method="post" action="{{base_path}}/game/{{peli.id}}/add">
     <tr>
-        <input name="id" type="hidden" value="{{peli.id}}">
         <td><strong>Lisää</strong></td>
         <td colspan="1">
             <select name="genret_kaikki" class="form-control" size="1">
@@ -66,6 +59,7 @@
             <button type="submit" class="btn btn-success btn-sm">Lis&auml;&auml;</button>
         </td>
     </tr>
+    <input name="peli_id" type="hidden" value="{{peli.id}}">
     </form>
 
     <tr>
